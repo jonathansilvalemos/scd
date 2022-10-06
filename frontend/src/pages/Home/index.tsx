@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 
 function Home() {
+    let newPageTitle = 'SCD - Bem Vindo';
+    document.title = newPageTitle;
+
     return (
-        <div className='container'>
+        <div className='container mt-5 py-5'>
             <div className="jumbotron jumbotron-fluid">
                 <h1 className="display-4">Sistema de Controle de Diárias</h1>
                 <p className="lead">Analise os controles de diárias de viagens</p>

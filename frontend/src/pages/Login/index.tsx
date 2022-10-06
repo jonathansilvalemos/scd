@@ -1,5 +1,8 @@
+import { Link } from 'react-router-dom';
 import './styles.css';
 function Login() {
+    let newPageTitle = 'SCD - Autenticar';
+    document.title = newPageTitle;
 
     return (
         <div className="container mt-3 col-sd-4 col-md-4 col-lg-4">
@@ -15,7 +18,14 @@ function Login() {
                 </div>
 
                 <button type="submit" className="btn btn-primary">Autenticar</button>
+                <Link to='/escala'>
+                    <div className='btn btn-primary m-2'>Escalas</div>
+                </Link>
+                <Link to='/diaria'>
+                    <div className='btn btn-primary m-2'>Diária</div>
+                </Link>
             </form>
+
         </div>
 
     );

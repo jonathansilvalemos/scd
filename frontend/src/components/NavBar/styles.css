@@ -1,9 +1,9 @@
-header {
+/*header {
     height: 60px;
     background-color: var(--color-primary);
     display: flex;
     align-items: center;
-}
+}*/
 
 .scd-nav-content{
     display: flex;
