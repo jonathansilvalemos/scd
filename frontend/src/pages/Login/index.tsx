@@ -1,33 +1,45 @@
+import Header2 from '../../components/Header2';
 import { Link } from 'react-router-dom';
+
 import './styles.css';
+
 function Login() {
-    let newPageTitle = 'SCD - Autenticar';
+
+    let newPageTitle = 'SCD - Login';
     document.title = newPageTitle;
 
     return (
-        <div className="container mt-3 col-sd-4 col-md-4 col-lg-4">
-            <h2>SCD Autenticação</h2>
-            <form>
-                <div className="mb-3 mt-3">
-                    <label htmlFor='matricula'>Matrícula:</label>
-                    <input type="number" className="form-control" id="matricula" placeholder="Entre com a matrícula" name="matricula" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor='pwd'>Senha:</label>
-                    <input type="password" className="form-control" id="pwd" placeholder="Digite a senha" name="senha" />
-                </div>
+        <div>
+            <Header2 />
+            <main>
+                <section id="diarias">
+                    <div className="scd-container">
 
-                <button type="submit" className="btn btn-primary">Autenticar</button>
-                <Link to='/escala'>
-                    <div className='btn btn-primary m-2'>Escalas</div>
-                </Link>
-                <Link to='/diaria'>
-                    <div className='btn btn-primary m-2'>Diária</div>
-                </Link>
-            </form>
+                        <div className="scd-card-login">
+                            <h2 className="scd-diarias-titulo">Autenticação</h2>
+                            <div>
+                                <div className="scd-form-control-login-container">
+                                    <input className="scd-form-control-login" type="text" placeholder='Matrícula' name="login" required />
+                                </div>
+                                <div className="scd-form-control-login-container">
 
+                                    <input className="scd-form-control-login" type="password" placeholder='Senha' name="senha" required />
+                                </div>
+                            </div>
+                            <div className="scd-btn-login">
+                                <form>
+                                    <Link to='/diaria'>
+                                        <input type='submit' className='btn-login-form' value="Login" />
+                                    </Link>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
-
     );
 }
 

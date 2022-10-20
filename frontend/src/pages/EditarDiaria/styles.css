@@ -1,0 +1,25 @@
+.form-control-arquivo {
+    display: block;
+    width: 100%;
+    background-color: #1B2531;
+    border: 1px solid #384459;
+    border-radius: 5px;
+    color: #9AAABE;
+}
+
+.scd-form-container-cadastro{
+    width: 100%;
+    align-items: center;
+}
+
+@media (min-width: 576px){
+    .scd-container-valores{
+        display: flex;
+    }
+    
+    .scd-form-container-cadastro{
+        width: 50%;
+        
+    }
+    
+}

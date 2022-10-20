@@ -1,0 +1,28 @@
+header{
+    height: 150px;
+    background: linear-gradient(180deg, #102347 0%, #181818 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scd-logo-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.scd-logo-container img{
+    width: 150px;       
+}
+
+.scd-logo-container p{
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.scd-logo-container h1{
+    margin-top: 15px;
+    font-size: 24px;
+}

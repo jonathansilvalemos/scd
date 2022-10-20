@@ -1,4 +1,51 @@
-form {
-    height: 240px;
-    align-items: center;
+.scd-card-login{
+    background-color: #283142;
+    border-radius: 10px;
+    padding: 30px 10px;
+    width: 400px;
+    margin: auto;
 }
+
+.scd-diarias-titulo{
+    color:#676FFF;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.scd-form-control-login{
+    width: 100%;
+    height: 46px;
+    background-color: #1B2531;
+    border: 1px solid #384459;
+    border-radius: 5px;
+    color: #9AAABE;
+    padding: 0 20px;
+    font-size: 18px;    
+    text-align: center;    
+}
+
+.scd-form-control-login-container{
+    margin: 32px auto;
+    max-width: 300px;       
+}
+
+.scd-btn-login{
+    text-align: center;    
+}
+
+.btn-login-form {
+    margin: 10px auto;
+    font-size: 18px;
+    background-color: blueviolet;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+    width: 100px;
+    padding: 2px;
+}
+
+.btn-login-form:hover {
+    background-color: blue;
+    border: 1px solid #FFF;    
+}
+

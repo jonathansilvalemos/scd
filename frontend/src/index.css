@@ -1,20 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Ubuntu:wght@400;700&display=swap');
 
-:root {
-  --color-primary: #4d41c0;
-  --bg-gray: #e8e8e8;
-}
-
 * {
+    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-html, body {
-    background-color: var(--bg-gray);
+body, html {
+    color: #fff;
+    background: #000;
 }
 
-a, a:hover {
-  text-decoration: none;
-  color: unset;
+a, a:hover, a:visited{
+    color: unset;
+    text-decoration: none;
 }
+
+.scd-container{
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+#diarias{
+  padding: 40px 10px;
+}
+

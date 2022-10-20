@@ -1,0 +1,67 @@
+.scd-card{
+    background-color: #283142;
+    border-radius: 10px;
+    padding: 30px 20px;
+}
+
+.scd-diarias-titulo{
+    color:#676FFF;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.scd-form-control{
+    width: 100%;
+    height: 46px;
+    background-color: #1B2531;
+    border: 1px solid #384459;
+    border-radius: 5px;
+    color: #9AAABE;
+    padding: 0 20px;
+    font-size: 18px;    
+}
+
+.scd-form-control-container{
+    margin-bottom: 16px;
+    max-width: 300px;
+}
+
+.scd-diarias-table{
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.scd-diarias-table thead {
+    height: 55px;
+    font-size: 16px;
+    color: #E9E9E9;
+    font-weight: 700;
+    text-align: center;
+}
+
+.scd-diarias-table tbody{
+    font-size: 14px;
+    color: #CFCFCF;
+    font-weight: 400;
+    text-align: center;
+}
+
+.scd-red-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+.scd-diarias-table tbody tr{
+    height: 74px;
+    border-top: 1px solid #5F6E82;
+}
+
+.scd-diarias-table tbody tr:nth-child(odd){
+    background-color: #242c3B;
+}
+
+.scd-diarias-table tbody tr:hover > td{
+    background-color: #384459;
+}
+

@@ -1,7 +1,5 @@
 .arquivo-escala{
-    margin-left: 30px;
-    
-    
+    margin-left: 30px;    
 }
 
 .label-arquivo-escala{
@@ -29,4 +27,19 @@
     width: 140px;
     text-align: center;
     padding: 0px 20px;
+}
+
+.fileinput-button {
+    position: relative;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.btn.btn-mini {
+    padding: 4px 8px !important;
+}
+
+.btn-mini [class*=" icon-"], .btn-mini [class^=icon-] {
+    margin-top: -1px;
 }
