@@ -64,6 +64,10 @@ function CadastrarDiaria() {
                                                 <label className="mt-3" htmlFor="valor">Valor Gasto:</label>
                                                 <input className="scd-form-control" type="text" placeholder="Despesa do dia R$" />
                                             </div>
+                                            <div className="scd-form-container-cadastro">
+                                                <label className="mt-3" htmlFor="valor">Portaria:</label><br />
+                                                <input className="scd-form-control valores" type="number" />
+                                            </div>
                                         </div>
                                         <label className="mt-3" htmlFor="radio">Status de Pagamento</label>
                                         <div className="radio">

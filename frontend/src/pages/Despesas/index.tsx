@@ -51,6 +51,10 @@ function Despesas() {
                                             className="scd-form-control"
                                             dateFormat="dd/MM/yyyy"
                                         />
+                                        <div className="scd-form-container-cadastro">
+                                            <label className="mt-3" htmlFor="valor">Total de Diárias:</label>
+                                            <input className="scd-form-control" type="text" value="R$ 308,00" disabled />
+                                        </div>
                                     </div>
                                     <div className="scd-container-valores mb-3">
                                         <div className="scd-form-container-cadastro">
@@ -59,25 +63,25 @@ function Despesas() {
                                         </div>
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Valor a Receber:</label>
-                                            <input className="scd-form-control" type="text" value="R$ 77,00" disabled />
+                                            <input className="scd-form-control" type="text" value="R$ 231,00" disabled />
                                         </div>
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Valor Gasto:</label>
-                                            <input className="scd-form-control" type="text" value="R$ 77,00" disabled />
+                                            <input className="scd-form-control" type="text" value="R$ 84,00" disabled />
                                         </div>
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Saldo de diárias:</label>
-                                            <input className="scd-form-control" type="text" value="R$ 77,00" disabled />
+                                            <input className="scd-form-control" type="text" value="R$ -7,00" disabled />
                                         </div>
                                     </div>
                                     <div className="scd-container-valores mt-2">
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Desconto no Vale Alimentação:</label>
-                                            <input className="scd-form-control" type="text" value="R$ 77,00" disabled />
+                                            <input className="scd-form-control" type="text" value="R$ 15,40" disabled />
                                         </div>
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Desconto no Vale Transporte:</label>
-                                            <input className="scd-form-control" type="text" value="R$ 77,00" disabled />
+                                            <input className="scd-form-control" type="text" value="R$ 3,08" disabled />
                                         </div>
                                     </div>
                                 </div>

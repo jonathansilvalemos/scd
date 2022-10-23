@@ -28,7 +28,11 @@ function CadastrarUsuario() {
                                         </div>
                                         <div>
                                             <label htmlFor="matricula">Matrícula:</label>
-                                            <input type='text' className='scd-form-control-login mb-2' name='nomatricula' required />
+                                            <input type='text' className='scd-form-control-login mb-2' name='matricula' required />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="senha">Senha:</label>
+                                            <input type='password' className='scd-form-control-login mb-2' name='senha' required />
                                         </div>
 
                                     </div>
