@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +25,8 @@ public class Diaria {
 	private String compDespesa;
 	private String compDesloca;
 	
+	@OneToOne
+	private Usuario usuario;
 	@ManyToOne
 	@JoinColumn(name = "cidade_id")
 	private Cidade cidade;

@@ -1,5 +1,5 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import DatePicker, { registerLocale } from "react-datepicker";
 import ptBR from 'date-fns/locale/pt-BR';
 import EditarBotao from "../../components/EditarBotao";
@@ -19,6 +19,8 @@ function Despesas() {
 
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
+
+    const matricula = useParams();
 
     return (
         <div>

@@ -1,17 +1,61 @@
-import { Link } from 'react-router-dom';
-import { useState } from "react";
+import { Link, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
 import Header from '../../components/Header';
-import NavBar from '../../components/NavBar';
+import NavBarAdmin from '../../components/NavBarAdmin';
+import axios, { AxiosRequestConfig } from 'axios';
+import { BASE_URL } from '../../utils/requests';
+import { Usuario, UsuarioPage } from 'types/usuario';
+import isEmpty from '../../utils/isEmpety';
+
 
 
 function CadastrarUsuario() {
 
     let newPageTitle = 'SCD - Cadastro de Usuário';
     document.title = newPageTitle;
+
+    const [usuario, setUsuario] = useState<Usuario>();
+    const { codigo, matricula, tipo } = useParams();
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const nome = (event.target as any).nome.value;
+        const matricula = (event.target as any).matricula.value;
+        const senha = (event.target as any).senha.value;
+        const tipousuario = (event.target as any).tipo.value;
+
+        const config: AxiosRequestConfig = {
+            baseURL: BASE_URL,
+            method: 'POST',
+            url: '/usuario/cadastrarusuario/',
+            data: {
+                nome: nome,
+                matricula: matricula,
+                senha: senha,
+                tipo: tipousuario
+            }
+        }
+
+        axios(config).then(response => {
+            console.log(response.data);
+            if(isEmpty(response.data)){
+                alert("Usuário já cadastrado!");
+            } else {
+                alert("Usuário cadastrado com sucesso!");
+            }
+
+        }).catch((err) => {
+            console.log("Erro: " + err);
+        });      
+    }
+
+
     return (
-        <div>
+
+        <>
+
             <Header />
-            <NavBar />
+            <NavBarAdmin />
 
             <main>
                 <section id="diarias">
@@ -19,7 +63,7 @@ function CadastrarUsuario() {
 
                         <div className="scd-card-login">
                             <h2 className="scd-diarias-titulo">Cadastrar Usuário</h2>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div>
                                     <div className="scd-form-control-login-container">
                                         <div>
@@ -34,21 +78,27 @@ function CadastrarUsuario() {
                                             <label htmlFor="senha">Senha:</label>
                                             <input type='password' className='scd-form-control-login mb-2' name='senha' required />
                                         </div>
-
+                                        <label className="mt-3" htmlFor="radio">Tipo:</label>
+                                        <div className="radio">
+                                            <label><input type="radio" required name="tipo" value="admin" /> Administrador</label>
+                                        </div>
+                                        <div className="radio mb-3">
+                                            <label><input type="radio" required name="tipo" value="user" defaultChecked/> Usuário</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="scd-btn-login">
-                                    <Link to='/diaria'>
-                                        <input type='submit' className='btn-login-form' value="Cadastrar" />
-                                    </Link>
+
+                                    <input type='submit' className='btn-login-form' value="Cadastrar" />
+
                                 </div>
                             </form>
                         </div>
                     </div>
                 </section>
             </main>
-        </div>
-    );
+        </>
+    )
 }
 
 export default CadastrarUsuario;

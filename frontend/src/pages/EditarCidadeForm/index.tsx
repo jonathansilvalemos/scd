@@ -1,24 +1,39 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Header from '../../components/Header';
-import NavBar from '../../components/NavBar';
 import { Cidade } from 'types/cidade';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../../utils/requests';
 import isEmpty from '../../utils/isEmpety';
 import NavBarAdmin from '../../components/NavBarAdmin';
 
-function CadastrarCidade() {
+function EditarCidadeForm() {
 
-    type Props = {
-        codigo: number;
-        matriculaId: number;
-    }
-
-    let newPageTitle = 'SCD - Cadastro de Cidade';
+    let newPageTitle = 'SCD - Editar Cidade';
     document.title = newPageTitle;
 
-    const [cidade, setCidade] = useState<Cidade>()
+    const { codigo, matricula, tipo, id } = useParams();
+    const [cidade, setCidade] = useState<Cidade>();
+    console.log(codigo, matricula, id);
+
+    useEffect(() => {
+        const config: AxiosRequestConfig = {
+            baseURL: BASE_URL,
+            method: 'GET',
+            url: `/cidade/${id}`
+        }
+
+        axios(config).then(response => {
+            if (isEmpty(response.data)) {
+                alert('Problemas ao atualizar')
+            } else {
+                setCidade(response.data);
+            }
+
+        }).catch((err) => {
+            console.log("Erro: " + err);
+        });
+    }, [])
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -27,26 +42,24 @@ function CadastrarCidade() {
 
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
-            method: 'POST',
-            url: '/cidade/cadastrarcidade',
+            method: 'PUT',
+            url: '/cidade/editar',
             data: {
+                id: id,
                 nome: nome,
                 valor: valor
             }
         }
 
         axios(config).then(response => {
-            if (isEmpty(response.data)) {
-                alert("Cidade já cadastrada!");
-            } else {
-                alert("Cidade cadastrada com sucesso!");
-            }
+            alert("Cidade atualizada com sucesso!");
+            window.location.href=`/cidade/editarcidade/${codigo}/${matricula}/${tipo}`;
 
         }).catch((err) => {
             console.log("Erro: " + err);
         });
     }
-    const { codigo, matricula } = useParams();
+
     return (
         <div>
             <Header />
@@ -56,17 +69,26 @@ function CadastrarCidade() {
                     <div className="scd-container">
 
                         <div className="scd-card-login">
-                            <h2 className="scd-diarias-titulo">Cadastrar Cidade</h2>
+                            <h2 className="scd-diarias-titulo">Editar Cidade</h2>
                             <form onSubmit={handleSubmit}>
                                 <div>
                                     <div className="scd-form-control-login-container">
                                         <div>
                                             <label htmlFor="cidade">Cidade:</label>
-                                            <input type='text' className='scd-form-control-login mb-3' name='nome' required />
+                                            <input
+                                                type='text'
+                                                className='scd-form-control-login mb-3'
+                                                name='nome'
+                                                defaultValue={cidade?.nome}
+                                                required />
                                         </div>
                                         <div>
                                             <label htmlFor="valor">Valor:</label>
-                                            R$ <input type="number" className='scd-form-control-login mb-2' name="valor"
+                                            R$ <input
+                                                type='number'
+                                                className='scd-form-control-login mb-2'
+                                                name='valor'
+                                                defaultValue={cidade?.valor}
                                                 step="0.01" min="44.00" required />
 
                                         </div>
@@ -75,7 +97,7 @@ function CadastrarCidade() {
                                 </div>
                                 <div className="scd-btn-login">
 
-                                    <input type='submit' className='btn-login-form' value="Cadastrar" />
+                                    <input type='submit' className='btn-login-form' value="Atualizar" />
 
                                 </div>
                             </form>
@@ -87,4 +109,4 @@ function CadastrarCidade() {
     );
 }
 
-export default CadastrarCidade;
+export default EditarCidadeForm;

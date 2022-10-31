@@ -1,11 +1,14 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import DatePicker, { registerLocale } from "react-datepicker";
 import ptBR from 'date-fns/locale/pt-BR';
 import EditarBotao from "../../components/EditarBotao";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import NavBar from "../../components/NavBar";
+import { BASE_URL } from "utils/requests";
+import { stringify } from "querystring";
+import NavBarAdmin from "../../components/NavBarAdmin";
 
 registerLocale('pt-br', ptBR);
 
@@ -20,10 +23,31 @@ function Diaria() {
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
 
+    const { codigo, matricula, tipo } = useParams();
+
+    console.log("codigo: " + codigo + " matricula: " + matricula + "Tipo: " + tipo)
+    /*useEffect(()=>{
+        axios.get(`${BASE_URL}/usuario`)
+    },[])*/
+
+
     return (
-        <div>
+        <>
             <Header />
-            <NavBar />
+            <div>
+                {(() => {
+                    if (tipo === 'admin') {
+                        return (
+                            <NavBarAdmin />
+                        )                    
+                    } else {
+                        return (
+                            <NavBar />
+                        )
+                    }
+                })()}
+            </div>
+            
             <main>
                 <section id="diarias">
                     <div className="scd-container">
@@ -42,7 +66,7 @@ function Diaria() {
                                     />
                                 </div>
                                 <div className="scd-form-control-container">
-                                <label htmlFor="DatePicker">Data Final</label>
+                                    <label htmlFor="DatePicker">Data Final</label>
                                     <DatePicker
                                         locale="pt-br"
                                         selected={maxDate}
@@ -109,7 +133,7 @@ function Diaria() {
                     </div>
                 </section>
             </main>
-        </div>
+        </>
     );
 }
 

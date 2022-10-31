@@ -7,5 +7,6 @@ import com.jonathanlemos.scd.entities.Cidade;
 
 @Repository
 public interface CidadeRepository extends JpaRepository<Cidade, Long>{
-
+	
+	
 }

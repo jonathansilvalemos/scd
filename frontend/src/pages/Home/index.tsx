@@ -18,7 +18,7 @@ function Home() {
                                 <p className="lead">Analise os controles de diárias de viagens</p>
                                 <hr />
                                 <p>Esta aplicação consiste em exibir um controle de diárias dos motoristas da SMS de São José do Norte.</p>
-                                <Link to='/login'>
+                                <Link to='/usuario/login'>
                                     <div className='btn btn-primary'>Acessar</div>
                                 </Link>
                             </div>

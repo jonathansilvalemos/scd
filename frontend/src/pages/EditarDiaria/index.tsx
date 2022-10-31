@@ -47,7 +47,7 @@ function EditarDiaria() {
                                             <select className="scd-form-control" id="sel1">
                                             <option value="pelotas">Pelotas</option>
                                                 <option value="piratini">Piratini</option>
-                                                <option selected value="bage">Bagé</option>
+                                                <option defaultChecked selected value="bage">Bagé</option>
                                                 <option value="jaguarao">Jaguarão</option>
                                                 <option value="saolourenco">São Lourenço do Sul</option>
                                             </select>

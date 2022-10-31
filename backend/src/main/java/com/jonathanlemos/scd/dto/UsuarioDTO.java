@@ -8,17 +8,26 @@ public class UsuarioDTO {
 	private Long matricula;
 	private String nome;
 	private String senha;
+	private String tipo;
 	
-	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	public UsuarioDTO() {
 		
 	}
 	
-	public UsuarioDTO(Long codigo, Long matricula, String nome, String senha) {
+	public UsuarioDTO(Long codigo, Long matricula, String nome, String senha, String tipo) {
 		this.codigo = codigo;
 		this.matricula = matricula;
 		this.nome = nome;
 		this.senha = senha;
+		this.tipo = tipo;
 	}
 	
 	public UsuarioDTO(Usuario usuario) {
@@ -26,6 +35,7 @@ public class UsuarioDTO {
 		matricula = usuario.getMatricula();
 		nome = usuario.getNome();
 		senha = usuario.getSenha();
+		tipo = usuario.getTipo();
 	}
 	
 	public Long getCodigo() {
