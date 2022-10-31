@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://scd-jonathan.netlify.app';
+export const BASE_URL = 'https://scd-jonathan.herokuapp.com';
