@@ -1,11 +1,11 @@
 import './styles.css';
 import "react-datepicker/dist/react-datepicker.css";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import ptBR from 'date-fns/locale/pt-BR';
 import Header from '../../components/Header';
-import NavBar from '../../components/NavBar';
+import NavBarAdmin from '../../components/NavBarAdmin';
 
 registerLocale('pt-br', ptBR);
 
@@ -15,12 +15,14 @@ function Escala() {
 
     const max = new Date();
 
+    const { codigo, matricula, tipo } = useParams();
+    
     const [maxDate, setMaxDate] = useState(max);
 
     return (
         <div>
             <Header />
-            <NavBar />
+            <NavBarAdmin />
             <main>
                 <section id="diarias">
                     <div className="scd-container">

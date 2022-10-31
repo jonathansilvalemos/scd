@@ -34,8 +34,8 @@ function NavBarAdmin() {
             </NavDropdown>
 
             <NavDropdown title="Escala" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/escala">Cadastrar</NavDropdown.Item>
-              <NavDropdown.Item href="/editar">Editar</NavDropdown.Item>
+              <NavDropdown.Item href={"/escala/cadastrar/" + `${codigo}/${matricula}/${tipo}`}>Cadastrar</NavDropdown.Item>
+              <NavDropdown.Item href={"/escala/editar/" + `${codigo}/${matricula}/${tipo}`}>Editar</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Sobre

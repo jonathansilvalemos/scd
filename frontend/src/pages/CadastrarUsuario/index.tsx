@@ -68,7 +68,7 @@ function CadastrarUsuario() {
                                     <div className="scd-form-control-login-container">
                                         <div>
                                             <label htmlFor="nome">Nome:</label>
-                                            <input type='text' className='scd-form-control-login mb-3' name='nome' required />
+                                            <input type='text' className='scd-form-control-login mb-3' autoFocus name='nome' required />
                                         </div>
                                         <div>
                                             <label htmlFor="matricula">Matrícula:</label>

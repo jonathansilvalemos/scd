@@ -30,7 +30,7 @@ function App() {
           <Route path="/editar" element={<EditarDiaria />} />
           <Route path="/usuario/login" element={<Login />} />
           <Route path="/usuario/validarsenha" element={<Login />} />
-          <Route path="/escala" element={<Escala />} />
+          <Route path="/escala/cadastrar/:codigo/:matricula/:tipo" element={<Escala />} />
           <Route path="/usuario/diaria/:codigo/:matricula/:tipo" element={<Diaria />} />
           <Route path="/usuario/cadastrarusuario/:codigo/:matricula/:tipo" element={<CadastrarUsuario />} />
           <Route path="/usuario/editarusuario/:codigo/:matricula/:tipo" element={<EditarUsuario />} />

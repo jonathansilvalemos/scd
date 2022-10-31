@@ -50,6 +50,7 @@ function Login() {
                                             placeholder='Matrícula'
                                             value={matricula}
                                             name="matricula"
+                                            autoFocus
                                             onChange={(event) => setMatricula(event.target.value)} required />
                                     </div>
                                     <div className="scd-form-control-login-container">
