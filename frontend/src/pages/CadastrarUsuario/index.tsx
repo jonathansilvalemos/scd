@@ -27,7 +27,7 @@ function CadastrarUsuario() {
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
             method: 'POST',
-            url: '/usuario/cadastrarusuario/',
+            url: '/usuario/cadastrarusuario',
             data: {
                 nome: nome,
                 matricula: matricula,
