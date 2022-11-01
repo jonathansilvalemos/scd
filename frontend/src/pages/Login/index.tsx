@@ -3,6 +3,7 @@ import './styles.css';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../../utils/requests';
 import { useEffect, useState } from 'react';
+import { Usuario } from 'types/usuario';
 
 function Login() {
 
@@ -11,13 +12,14 @@ function Login() {
 
     const [matricula, setMatricula] = useState("");
     const [senha, setSenha] = useState("");
+    const [usuario, setUsuario] = useState<Usuario>();
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
             method: 'POST',
-            url: `/usuario/?matricula=${matricula}&senha=${senha}`,
+            url: `/usuario/login/?matricula=${matricula}&senha=${senha}`,
             data: {
                 matricula: matricula,
                 senha: senha
@@ -25,8 +27,11 @@ function Login() {
         }
 
         axios(config).then(response => {
-            if (response.status === 200)
+            if (response.status === 200){
                 window.location.href=`/usuario/diaria/${response.data.codigo}/${response.data.matricula}/${response.data.tipo}`;
+            } else {
+                alert("Erro");
+            }
         }).catch((err) => {
             alert("Erro na autenticação!")
         });

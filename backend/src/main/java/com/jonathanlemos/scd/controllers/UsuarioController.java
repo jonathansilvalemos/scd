@@ -65,15 +65,21 @@ public class UsuarioController {
 		return ResponseEntity.badRequest().body(result);
 	}
 	
-	@PostMapping(value = "/{matricula}/{senha}")
+	@PostMapping(value = "/login")
 	@ResponseBody
-	public ResponseEntity<UsuarioDTO> validarSenha(@RequestParam(value = "matricula") Long matricula, 
-												@RequestParam(value = "senha") String senha) {
+	public ResponseEntity<UsuarioDTO> validarSenha(@RequestParam("matricula") Long matricula, 
+												@RequestParam("senha") String senha) {
 		System.out.println("Login e senha: " + matricula + "-" + senha);
-		Optional<UsuarioDTO> usuario = usuarioService.findByMatricula(matricula);
+		Long numero = matricula;
+		System.out.println("Número: " + numero);
+		Optional<UsuarioDTO> usuario = usuarioService.findByMatricula(numero);
 		if (usuario.isEmpty()) {
+			System.out.println("Usuário em branco!");
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+		} else {
+			System.out.println("usuário existe");
 		}
+		
 		
 		
 		UsuarioDTO usuarioBanco = usuario.get();
