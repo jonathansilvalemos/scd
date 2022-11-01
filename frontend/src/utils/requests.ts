@@ -1,1 +1,1 @@
-export const BASE_URL =  "https://scd-jonathan.herokuapp.com/" ?? process.env.REACT_APP_BACKEND_URL;
+export const BASE_URL =  'https://scd-jonathan.herokuapp.com'
