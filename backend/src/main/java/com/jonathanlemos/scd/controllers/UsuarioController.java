@@ -65,7 +65,7 @@ public class UsuarioController {
 		return ResponseEntity.badRequest().body(result);
 	}
 	
-	@PostMapping(value = "/validarsenha")
+	@PostMapping(value = "/{matricula}/{senha}")
 	@ResponseBody
 	public ResponseEntity<UsuarioDTO> validarSenha(@RequestParam(value = "matricula") Long matricula, 
 												@RequestParam(value = "senha") String senha) {

@@ -17,7 +17,7 @@ function Login() {
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
             method: 'POST',
-            url: `/usuario/validarsenha/?matricula=${matricula}&senha=${senha}`,
+            url: `/usuario/?matricula=${matricula}&senha=${senha}`,
             data: {
                 matricula: matricula,
                 senha: senha
