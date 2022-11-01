@@ -43,6 +43,7 @@ public class UsuarioController {
 	}
 	
 	@PutMapping
+	@ResponseBody
 	public UsuarioDTO atualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
 		return usuarioService.atualizarUsuario(usuarioDTO);
 	}
