@@ -50,7 +50,7 @@ function EditarUsuarioForm() {
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
             method: 'PUT',
-            url: '/usuario/editar/',
+            url: '/usuario',
             data: {
                 codigo: id,
                 nome: nome,

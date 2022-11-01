@@ -42,7 +42,7 @@ public class UsuarioController {
 		return usuarioService.findById(id);
 	}
 	
-	@PutMapping(value = "/editar")
+	@PutMapping
 	public UsuarioDTO atualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
 		return usuarioService.atualizarUsuario(usuarioDTO);
 	}
