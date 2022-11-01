@@ -58,7 +58,7 @@ public class UsuarioController {
 		
 	}
 	
-	@PostMapping(value = "/cadastrarusuario")
+	@PostMapping
 	public ResponseEntity<UsuarioDTO> salvarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
 		UsuarioDTO result = usuarioService.salvarUsuario(usuarioDTO);
 		if (result != null)	return ResponseEntity.ok(result);
