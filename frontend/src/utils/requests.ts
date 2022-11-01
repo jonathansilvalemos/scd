@@ -1,1 +1,1 @@
-export const BASE_URL = process.env.VITE_BACKEND_URL
+export const BASE_URL = 'https://scd-jonathan.herokuapp.com';

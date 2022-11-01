@@ -27,13 +27,13 @@ function CadastrarUsuario() {
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
             method: 'POST',
-            url: `/usuario/cadastrarusuario/${codigo}/${matricula}/${tipo}`,
+            url: '/usuario/cadastrarusuario',
             data: {
                 nome: nome,
                 matricula: matricula,
                 senha: senha,
                 tipo: tipousuario
-            }
+            },
         }
 
         axios(config).then(response => {

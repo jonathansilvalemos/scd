@@ -58,13 +58,11 @@ public class UsuarioController {
 		
 	}
 	
-	@PostMapping(value = "/cadastrarusuario/{codigo}/{matricula}/{tipo}")
-	public UsuarioDTO salvarUsuario(
-			@PathVariable Long codigo, @PathVariable Long matricula,
-			@PathVariable String tipo,
-			@RequestBody UsuarioDTO usuarioDTO) {
+	@PostMapping(value = "/cadastrarusuario")
+	public ResponseEntity<UsuarioDTO> salvarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
 		UsuarioDTO result = usuarioService.salvarUsuario(usuarioDTO);
-		return result;
+		if (result != null)	return ResponseEntity.ok(result);
+		return ResponseEntity.badRequest().body(result);
 	}
 	
 	@PostMapping(value = "/validarsenha")
