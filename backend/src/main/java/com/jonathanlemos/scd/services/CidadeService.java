@@ -19,7 +19,7 @@ public class CidadeService {
 	
 	@Transactional(readOnly = true)
 	public Page<CidadeDTO> buscarTodos(Pageable pageable) {
-		Page<Cidade> cidade = cidadeRepository.findAll(PageRequest.of(0,200,Sort.by(Sort.Direction.ASC, "id"))); 
+		Page<Cidade> cidade = cidadeRepository.findAll(PageRequest.of(0,200,Sort.by(Sort.Direction.ASC, "id")));
 		Page<CidadeDTO> page = cidade.map(x -> new CidadeDTO(x));
 		return page;
 	}
