@@ -15,7 +15,7 @@ function Escala() {
 
     const max = new Date();
 
-    const { codigo, matricula, tipo } = useParams();
+    const { cod, mat, tip } = useParams();
     
     const [maxDate, setMaxDate] = useState(max);
 

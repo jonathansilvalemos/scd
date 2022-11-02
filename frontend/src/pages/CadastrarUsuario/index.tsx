@@ -15,7 +15,12 @@ function CadastrarUsuario() {
     document.title = newPageTitle;
 
     const [usuario, setUsuario] = useState<Usuario>();
-    const { codigo, matricula, tipo } = useParams();
+    const { cod, mat, tip } = useParams();
+    const [campos, setCampos] = useState({
+        nome: '',
+        matricula: '',
+        senha: ''
+    });
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -35,18 +40,25 @@ function CadastrarUsuario() {
                 tipo: tipousuario
             }
         }
-
+        
         axios(config).then(response => {
+            
             console.log(response.data);
             if(isEmpty(response.data)){
                 alert("Usuário já cadastrado!");
             } else {
                 alert("Usuário cadastrado com sucesso!");
+                window.location.href=`/usuario/cadastrarusuario/${cod}/${mat}/${tip}`;
             }
 
         }).catch((err) => {
             console.log("Erro: " + err);
         });      
+        setCampos({
+            nome:'',
+            matricula:'',
+            senha:''
+        });
     }
 
 
@@ -68,15 +80,31 @@ function CadastrarUsuario() {
                                     <div className="scd-form-control-login-container">
                                         <div>
                                             <label htmlFor="nome">Nome:</label>
-                                            <input type='text' className='scd-form-control-login mb-3' autoFocus name='nome' required />
+                                            <input 
+                                            type='text' 
+                                            className='scd-form-control-login mb-3' 
+                                            autoFocus 
+                                            defaultValue={campos.nome}
+                                            name='nome' 
+                                            required />
                                         </div>
                                         <div>
                                             <label htmlFor="matricula">Matrícula:</label>
-                                            <input type='text' className='scd-form-control-login mb-2' name='matricula' required />
+                                            <input 
+                                            type='text' 
+                                            className='scd-form-control-login mb-2' 
+                                            defaultValue={campos.matricula}
+                                            name='matricula' 
+                                            required />
                                         </div>
                                         <div>
                                             <label htmlFor="senha">Senha:</label>
-                                            <input type='password' className='scd-form-control-login mb-2' name='senha' required />
+                                            <input 
+                                            type='password' 
+                                            className='scd-form-control-login mb-2' 
+                                            defaultValue={campos.senha}
+                                            name='senha' 
+                                            required />
                                         </div>
                                         <label className="mt-3" htmlFor="radio">Tipo:</label>
                                         <div className="radio">

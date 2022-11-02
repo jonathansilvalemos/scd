@@ -23,9 +23,9 @@ function Diaria() {
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
 
-    const { codigo, matricula, tipo } = useParams();
+    const { cod, mat, tip } = useParams();
 
-    console.log("codigo: " + codigo + " matricula: " + matricula + "Tipo: " + tipo)
+    console.log("codigo: " + cod + " matricula: " + mat + "Tipo: " + tip)
     /*useEffect(()=>{
         axios.get(`${BASE_URL}/usuario`)
     },[])*/
@@ -36,7 +36,7 @@ function Diaria() {
             <Header />
             <div>
                 {(() => {
-                    if (tipo === 'admin') {
+                    if (tip === 'admin') {
                         return (
                             <NavBarAdmin />
                         )                    

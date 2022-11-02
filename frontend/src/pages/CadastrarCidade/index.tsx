@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Header from '../../components/Header';
-import NavBar from '../../components/NavBar';
 import { Cidade } from 'types/cidade';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../../utils/requests';
@@ -9,11 +8,6 @@ import isEmpty from '../../utils/isEmpety';
 import NavBarAdmin from '../../components/NavBarAdmin';
 
 function CadastrarCidade() {
-
-    type Props = {
-        codigo: number;
-        matriculaId: number;
-    }
 
     let newPageTitle = 'SCD - Cadastro de Cidade';
     document.title = newPageTitle;
@@ -28,7 +22,7 @@ function CadastrarCidade() {
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
             method: 'POST',
-            url: '/cidade/cadastrarcidade',
+            url: '/cidade',
             data: {
                 nome: nome,
                 valor: valor
@@ -46,7 +40,7 @@ function CadastrarCidade() {
             console.log("Erro: " + err);
         });
     }
-    const { codigo, matricula } = useParams();
+    const { cod, mat } = useParams();
     return (
         <div>
             <Header />

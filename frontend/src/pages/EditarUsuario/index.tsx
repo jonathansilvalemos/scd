@@ -17,7 +17,7 @@ function EditarUsuario() {
     let newPageTitle = 'SCD - Editar Usuario';
     document.title = newPageTitle;
 
-    const { codigo, matricula, tipo } = useParams();
+    const { cod, mat, tip } = useParams();
     const [usuario, setUsuario] = useState<Usuario[]>([]);
 
     useEffect(() => {
@@ -59,7 +59,7 @@ function EditarUsuario() {
                                                     <td>{u.nome}</td>
                                                     <td>
                                                         <div className="scd-red-btn-container">
-                                                            <a href={"/usuario/editar/" + `${codigo}/${matricula}/${tipo}/${u.codigo}`}><EditarBotao /></a>
+                                                            <a href={"/usuario/editar/" + `${cod}/${mat}/${tip}/${u.codigo}`}><EditarBotao /></a>
                                                         </div>
                                                     </td>
                                                 </tr>

@@ -15,7 +15,7 @@ function EditarUsuarioForm() {
     document.title = newPageTitle;
 
     const [usuario, setUsuario] = useState<Usuario>();
-    const { codigo, matricula, tipo, id } = useParams();
+    const { cod, mat, tip, id } = useParams();
 
     useEffect(() => {
         async function atualizaUsuario() {
@@ -61,7 +61,7 @@ function EditarUsuarioForm() {
         }
 
         axios(config).then(response => {
-            window.location.href=`/usuario/editarusuario/${response.data.codigo}/${response.data.matricula}/${response.data.tipo}`;
+            window.location.href=`/usuario/editarusuario/${cod}/${mat}/${tip}`;
         }).catch((err) => {
             console.log("Erro: " + err);
         });

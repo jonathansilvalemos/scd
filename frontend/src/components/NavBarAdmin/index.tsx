@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 function NavBarAdmin() {
 
-  const {codigo, matricula, tipo} = useParams();
+  const {cod, mat, tip} = useParams();
 
   return (
     
@@ -20,22 +20,22 @@ function NavBarAdmin() {
           <Nav className="me-auto">
             
             <NavDropdown title="Cidade" id="collasible-nav-dropdown">
-              <NavDropdown.Item href={"/cidade/cadastrarcidade/" + `${codigo}/${matricula}/${tipo}`}>Cadastrar</NavDropdown.Item>
+              <NavDropdown.Item href={"/cidade/" + `${cod}/${mat}/${tip}`}>Cadastrar</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href={"/cidade/editarcidade/" + `${codigo}/${matricula}/${tipo}`}>Editar</NavDropdown.Item>
+              <NavDropdown.Item href={"/cidade/editarcidade/" + `${cod}/${mat}/${tip}`}>Editar</NavDropdown.Item>
                             
             </NavDropdown>
 
             <NavDropdown title="Usuário" id="collasible-nav-dropdown">
-              <NavDropdown.Item href={"/usuario/cadastrarusuario/" + `${codigo}/${matricula}/${tipo}`}>Cadastrar</NavDropdown.Item>
+              <NavDropdown.Item href={"/usuario/cadastrarusuario/" + `${cod}/${mat}/${tip}`}>Cadastrar</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href={"/usuario/editarusuario/" + `${codigo}/${matricula}/${tipo}`}>Editar</NavDropdown.Item>
+              <NavDropdown.Item href={"/usuario/editarusuario/" + `${cod}/${mat}/${tip}`}>Editar</NavDropdown.Item>
               
             </NavDropdown>
 
             <NavDropdown title="Escala" id="collasible-nav-dropdown">
-              <NavDropdown.Item href={"/escala/cadastrar/" + `${codigo}/${matricula}/${tipo}`}>Cadastrar</NavDropdown.Item>
-              <NavDropdown.Item href={"/escala/editar/" + `${codigo}/${matricula}/${tipo}`}>Editar</NavDropdown.Item>
+              <NavDropdown.Item href={"/escala/cadastrar/" + `${cod}/${mat}/${tip}`}>Cadastrar</NavDropdown.Item>
+              <NavDropdown.Item href={"/escala/editar/" + `${cod}/${mat}/${tip}`}>Editar</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Sobre
@@ -43,8 +43,8 @@ function NavBarAdmin() {
             </NavDropdown>
 
             <NavDropdown title="Diária" id="collasible-nav-dropdown">
-              <NavDropdown.Item href={"/usuario/cadastrardiaria/" + `${codigo}/${matricula}/${tipo}`}>Cadastrar</NavDropdown.Item>
-              <NavDropdown.Item href={"/usuario/diaria/" + `${codigo}/${matricula}/${tipo}`}>Pesquisar</NavDropdown.Item>
+              <NavDropdown.Item href={"/usuario/cadastrardiaria/" + `${cod}/${mat}/${tip}`}>Cadastrar</NavDropdown.Item>
+              <NavDropdown.Item href={"/usuario/diaria/" + `${cod}/${mat}/${tip}`}>Pesquisar</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
                 Sobre

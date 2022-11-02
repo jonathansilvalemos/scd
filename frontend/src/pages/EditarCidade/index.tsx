@@ -18,7 +18,7 @@ function EditarCidade() {
     let newPageTitle = 'SCD - Editar Cidade';
     document.title = newPageTitle;
 
-    const { codigo, matricula, tipo } = useParams();
+    const { cod, mat, tip } = useParams();
     const [cidades, setCidade] = useState<Cidade[]>([]);
 
     useEffect(() => {
@@ -63,7 +63,7 @@ function EditarCidade() {
                                                     <td>{cidade.valor.toLocaleString('pt-br',formato)}</td>
                                                     <td>
                                                         <div className="scd-red-btn-container">
-                                                            <a href={"/cidade/editar/"+`${codigo}/${matricula}/${tipo}/${cidade.id}`}><EditarBotao /></a>
+                                                            <a href={"/cidade/editar/"+`${cod}/${mat}/${tip}/${cidade.id}`}><EditarBotao /></a>
                                                         </div>
                                                     </td>
                                                 </tr>

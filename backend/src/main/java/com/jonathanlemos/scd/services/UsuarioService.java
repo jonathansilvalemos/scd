@@ -69,6 +69,7 @@ public class UsuarioService {
 		Optional<Usuario> usuario = usuarioRepository.findByMatricula(usuarioDTO.getMatricula());
 		
 		if (usuario.isEmpty()) {
+			System.out.println("eh vazio");
 			Usuario usuarioCodificado = new Usuario();
 			usuarioCodificado.setMatricula(usuarioDTO.getMatricula());
 			usuarioCodificado.setNome(usuarioDTO.getNome());

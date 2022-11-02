@@ -12,9 +12,9 @@ function EditarCidadeForm() {
     let newPageTitle = 'SCD - Editar Cidade';
     document.title = newPageTitle;
 
-    const { codigo, matricula, tipo, id } = useParams();
+    const { cod, mat, tip, id } = useParams();
     const [cidade, setCidade] = useState<Cidade>();
-    console.log(codigo, matricula, id);
+    console.log(cod, mat, id);
 
     useEffect(() => {
         const config: AxiosRequestConfig = {
@@ -53,7 +53,7 @@ function EditarCidadeForm() {
 
         axios(config).then(response => {
             alert("Cidade atualizada com sucesso!");
-            window.location.href=`/cidade/editarcidade/${codigo}/${matricula}/${tipo}`;
+            window.location.href=`/cidade/editarcidade/${cod}/${mat}/${tip}`;
 
         }).catch((err) => {
             console.log("Erro: " + err);

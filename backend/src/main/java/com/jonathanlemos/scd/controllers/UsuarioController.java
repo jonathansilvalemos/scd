@@ -45,6 +45,7 @@ public class UsuarioController {
 	@PutMapping
 	@ResponseBody
 	public UsuarioDTO atualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+		System.out.println("Chegou pra atualizar");
 		return usuarioService.atualizarUsuario(usuarioDTO);
 	}
 	
@@ -60,22 +61,19 @@ public class UsuarioController {
 	}
 	
 	@PostMapping
+	@ResponseBody
 	public ResponseEntity<UsuarioDTO> salvarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
 		UsuarioDTO result = usuarioService.salvarUsuario(usuarioDTO);
 		if (result != null)	return ResponseEntity.ok(result);
-		return ResponseEntity.badRequest().body(result);
+		return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping(value = "/login")
 	@ResponseBody
 	public ResponseEntity<UsuarioDTO> validarSenha(@RequestParam("matricula") Long matricula, 
 												@RequestParam("senha") String senha) {
-		System.out.println("Login e senha: " + matricula + "-" + senha);
-		Long numero = matricula;
-		System.out.println("Número: " + numero);
-		Optional<UsuarioDTO> usuario = usuarioService.findByMatricula(numero);
+		Optional<UsuarioDTO> usuario = usuarioService.findByMatricula(matricula);
 		if (usuario.isEmpty()) {
-			System.out.println("Usuário em branco!");
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 		} else {
 			System.out.println("usuário existe");

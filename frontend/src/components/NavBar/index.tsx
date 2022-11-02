@@ -7,7 +7,7 @@ import { useParams } from 'react-router-dom';
 
 function NavBar() {
 
-  const{codigo, matricula} = useParams();
+  const{cod, mat} = useParams();
   return (
     
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -19,7 +19,7 @@ function NavBar() {
           <Nav className="me-auto">
             
             <NavDropdown title="Diária" id="collasible-nav-dropdown">
-              <NavDropdown.Item href={"/usuario/cadastrardiaria/" + matricula}>Cadastrar</NavDropdown.Item>
+              <NavDropdown.Item href={"/usuario/cadastrardiaria/" + mat}>Cadastrar</NavDropdown.Item>
               <NavDropdown.Item href="/usuario/diaria/">Pesquisar</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">

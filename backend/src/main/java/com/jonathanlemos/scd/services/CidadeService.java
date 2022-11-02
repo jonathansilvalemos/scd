@@ -16,37 +16,41 @@ import com.jonathanlemos.scd.repositories.CidadeRepository;
 public class CidadeService {
 	@Autowired
 	private CidadeRepository cidadeRepository;
-	
+
 	@Transactional(readOnly = true)
 	public Page<CidadeDTO> buscarTodos(Pageable pageable) {
-		Page<Cidade> cidade = cidadeRepository.findAll(PageRequest.of(0,200,Sort.by(Sort.Direction.ASC, "id")));
+		Page<Cidade> cidade = cidadeRepository.findAll(PageRequest.of(0, 200, Sort.by(Sort.Direction.ASC, "id")));
 		Page<CidadeDTO> page = cidade.map(x -> new CidadeDTO(x));
 		return page;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public Page<CidadeDTO> cidadesOrdenadasNome(Pageable pageable) {
-		Page<Cidade> cidade = cidadeRepository.findAll(PageRequest.of(0,200,Sort.by(Sort.Direction.ASC, "nome"))); 
+		Page<Cidade> cidade = cidadeRepository.findAll(PageRequest.of(0, 200, Sort.by(Sort.Direction.ASC, "nome")));
 		Page<CidadeDTO> page = cidade.map(x -> new CidadeDTO(x));
 		return page;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public CidadeDTO findById(Long id) {
-		Cidade result = cidadeRepository.findById(id).get(); 
+		Cidade result = cidadeRepository.findById(id).get();
 		CidadeDTO dto = new CidadeDTO(result);
 		return dto;
 	}
-	
+
 	@Transactional
 	public CidadeDTO salvarCidade(CidadeDTO cidadeDTO) {
+		if (cidadeDTO != null) {
 			Cidade cidade = new Cidade();
 			cidade.setNome(cidadeDTO.getNome());
 			cidade.setValor(cidadeDTO.getValor());
 			cidade = cidadeRepository.saveAndFlush(cidade);
-			return new CidadeDTO(cidade);		
-	}	
-	
+			return new CidadeDTO(cidade);
+		} else {
+			return null;
+		}
+	}
+
 	@Transactional
 	public CidadeDTO atualizarCidade(CidadeDTO cidadeDTO) {
 		Cidade cidade = new Cidade();
@@ -54,6 +58,6 @@ public class CidadeService {
 		cidade.setNome(cidadeDTO.getNome());
 		cidade.setValor(cidadeDTO.getValor());
 		cidade = cidadeRepository.saveAndFlush(cidade);
-		return new CidadeDTO(cidade);		
+		return new CidadeDTO(cidade);
 	}
 }

@@ -3,6 +3,8 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+
+import 'bootstrap/dist/css/bootstrap.css';
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Escala from "./pages/Escala";
@@ -30,15 +32,15 @@ function App() {
           <Route path="/editar" element={<EditarDiaria />} />
           <Route path="/usuario/login" element={<Login />} />
           <Route path="/usuario/validarsenha" element={<Login />} />
-          <Route path="/escala/cadastrar/:codigo/:matricula/:tipo" element={<Escala />} />
-          <Route path="/usuario/diaria/:codigo/:matricula/:tipo" element={<Diaria />} />
-          <Route path="/usuario/cadastrarusuario/:codigo/:matricula/:tipo" element={<CadastrarUsuario />} />
-          <Route path="/usuario/editarusuario/:codigo/:matricula/:tipo" element={<EditarUsuario />} />
-          <Route path="/usuario/editar/:codigo/:matricula/:tipo/:id" element={<EditarUsuarioForm />} />
-          <Route path="/cidade/cadastrarcidade/:codigo/:matricula/:tipo" element={<CadastrarCidade />} />
-          <Route path="/cidade/editarcidade/:codigo/:matricula/:tipo" element={<EditarCidade />} />
-          <Route path="/cidade/editar/:codigo/:matricula/:tipo/:id" element={<EditarCidadeForm />} />
-          <Route path="/usuario/cadastrardiaria/:codigo/:matricula/:tipo/:id" element={<CadastrarDiaria />} />
+          <Route path="/escala/cadastrar/:cod/:mat/:tip" element={<Escala />} />
+          <Route path="/usuario/diaria/:cod/:mat/:tip" element={<Diaria />} />
+          <Route path="/usuario/cadastrarusuario/:cod/:mat/:tip" element={<CadastrarUsuario />} />
+          <Route path="/usuario/editarusuario/:cod/:mat/:tip" element={<EditarUsuario />} />
+          <Route path="/usuario/editar/:cod/:mat/:tip/:id" element={<EditarUsuarioForm />} />
+          <Route path="/cidade/:cod/:mat/:tip" element={<CadastrarCidade />} />
+          <Route path="/cidade/editarcidade/:cod/:mat/:tip" element={<EditarCidade />} />
+          <Route path="/cidade/editar/:cod/:mat/:tip/:id" element={<EditarCidadeForm />} />
+          <Route path="/usuario/cadastrardiaria/:cod/:mat/:tip/:id" element={<CadastrarDiaria />} />
           <Route path="/despesas" element={<Despesas />} />
           <Route path="/cidade/select" element={<SelectCidade />} />
         </Routes>
