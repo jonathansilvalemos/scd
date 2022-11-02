@@ -29,9 +29,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
-	@Autowired
-	private PasswordEncoder encoder;
-	
+		
 	@GetMapping
 	public Page<UsuarioDTO> findAll(Pageable pageable) {
 		return usuarioService.buscarTodos(pageable);
@@ -72,21 +70,19 @@ public class UsuarioController {
 	@ResponseBody
 	public ResponseEntity<UsuarioDTO> validarSenha(@RequestParam("matricula") Long matricula, 
 												@RequestParam("senha") String senha) {
-		Optional<UsuarioDTO> usuario = usuarioService.findByMatricula(matricula);
+		Optional<UsuarioDTO> usuario = usuarioService.login(matricula, senha);
 		if (usuario.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
-		} else {
-			System.out.println("usuário existe");
-		}
-		
-		
-		
+		} 
 		UsuarioDTO usuarioBanco = usuario.get();
+		return ResponseEntity.ok().body(usuarioBanco);
+		
+		/*UsuarioDTO usuarioBanco = usuario.get();
 		boolean valid = encoder.matches(senha, usuarioBanco.getSenha());
 		
 		HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
 		
 		
-		return ResponseEntity.status(status).body(usuarioBanco);
+		return ResponseEntity.status(status).body(usuarioBanco);*/
 	}
 }

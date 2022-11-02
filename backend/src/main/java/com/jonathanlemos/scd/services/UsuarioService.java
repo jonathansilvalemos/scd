@@ -50,6 +50,25 @@ public class UsuarioService {
 		return new UsuarioDTO(user);
 	}
 	
+	@Transactional
+	public Optional<UsuarioDTO> login(Long matricula, String senha) {
+		Optional<Usuario> usuario = usuarioRepository.findByMatricula(matricula);
+		if (usuario == null) {
+			return null;
+		} else {
+			if (encoder.matches(senha, usuario.get().getSenha())) {
+				UsuarioDTO user = new UsuarioDTO();
+				user.setCodigo(usuario.get().getCodigo());
+				user.setMatricula(usuario.get().getMatricula());
+				user.setNome(usuario.get().getNome());
+				user.setSenha(usuario.get().getSenha());
+				user.setTipo(usuario.get().getTipo());
+				
+				return Optional.of(user);
+			}
+		}
+		return null;
+	}
 	
 	@Transactional
 	public Optional<UsuarioDTO> findByMatricula(Long matricula) {
