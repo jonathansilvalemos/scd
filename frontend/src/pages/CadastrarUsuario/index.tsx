@@ -61,9 +61,7 @@ function CadastrarUsuario() {
         });
     }
 
-
     return (
-
         <>
 
             <Header />

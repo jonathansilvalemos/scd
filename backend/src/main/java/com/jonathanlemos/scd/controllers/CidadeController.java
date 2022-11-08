@@ -27,11 +27,7 @@ public class CidadeController {
 		return cidadeService.buscarTodos(pageable);
 	}
 	
-	@GetMapping(value = "/ordenarcidades")
-	public Page<CidadeDTO> cidadesOrdenadasNome(Pageable pageable) {
-		return cidadeService.cidadesOrdenadasNome(pageable);
-	}
-	
+		
 	@GetMapping(value = "/{id}")
 	public CidadeDTO findById(@PathVariable Long id) {
 		return cidadeService.findById(id);

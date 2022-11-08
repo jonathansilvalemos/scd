@@ -8,9 +8,15 @@ import Header from "../../components/Header";
 import NavBarAdmin from "../../components/NavBarAdmin";
 import axios from "axios";
 import { BASE_URL } from "../../utils/requests";
-import { Usuario } from "../../types/usuario";
+import { Usuario, UsuarioPage } from "../../types/usuario";
+import Pagination from "../../components/Pagination";
+
 
 registerLocale('pt-br', ptBR);
+
+type Props = {
+    u:Usuario;
+}
 
 function EditarUsuario() {
 
@@ -19,17 +25,35 @@ function EditarUsuario() {
 
     const { cod, mat, tip } = useParams();
     const [usuario, setUsuario] = useState<Usuario[]>([]);
+   
+    const [page, setPage] = useState<UsuarioPage>({
+        content: [],
+        last: true,
+        totalPages: 0,
+        totalElements: 0,
+        first: true,
+        size: 5,
+        number: 0,
+        numberOfElements: 0,
+        empty: true
+    });
+
+    const [pageNumber, setPageNumber] = useState(0);
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/usuario`)
+        axios.get(`${BASE_URL}/usuario?size=5&page=${pageNumber}&sort=codigo`)
             .then(response => {
-                setUsuario(response.data.content);
+                const data = response.data as UsuarioPage;
+                setPage(data);
             })
-
             .catch((err) => {
                 alert('Erro ao carregar Usuários' + err);
             });
-    }, [])
+    }, [pageNumber])
+
+    const handlePageChange = (newPageNumber : number) => {
+        setPageNumber(newPageNumber);
+    }
 
     return (
         <>
@@ -41,7 +65,7 @@ function EditarUsuario() {
 
                         <div className="scd-card">
                             <h2 className="scd-diarias-titulo">Editar Usuários</h2>
-
+                            <Pagination page={page} onChange={handlePageChange}/>
                             <div>
                                 <table className="scd-diarias-table">
                                     <thead>
@@ -52,8 +76,8 @@ function EditarUsuario() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {usuario.map(u => {
-                                            return (
+                                        {page.content.map(u=>
+                                            (
                                                 <tr key={u.codigo}>
                                                     <td>{u.codigo}</td>
                                                     <td>{u.nome}</td>
@@ -64,7 +88,7 @@ function EditarUsuario() {
                                                     </td>
                                                 </tr>
                                             )
-                                        })}
+                                        )}
                                     </tbody>
                                 </table>
                             </div>

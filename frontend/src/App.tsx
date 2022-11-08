@@ -30,19 +30,29 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/card" element={<ScdCard />} />
           <Route path="/editar" element={<EditarDiaria />} />
-          <Route path="/usuario/login" element={<Login />} />
-          <Route path="/usuario/validarsenha" element={<Login />} />
-          <Route path="/escala/cadastrar/:cod/:mat/:tip" element={<Escala />} />
-          <Route path="/usuario/diaria/:cod/:mat/:tip" element={<Diaria />} />
-          <Route path="/usuario/cadastrarusuario/:cod/:mat/:tip" element={<CadastrarUsuario />} />
-          <Route path="/usuario/editarusuario/:cod/:mat/:tip" element={<EditarUsuario />} />
-          <Route path="/usuario/editar/:cod/:mat/:tip/:id" element={<EditarUsuarioForm />} />
-          <Route path="/cidade/:cod/:mat/:tip" element={<CadastrarCidade />} />
-          <Route path="/cidade/editarcidade/:cod/:mat/:tip" element={<EditarCidade />} />
-          <Route path="/cidade/editar/:cod/:mat/:tip/:id" element={<EditarCidadeForm />} />
-          <Route path="/usuario/cadastrardiaria/:cod/:mat/:tip/:id" element={<CadastrarDiaria />} />
+          <Route path="/usuario">
+            <Route path="login" element={<Login />} />
+            <Route path="validarsenha" element={<Login />} />
+            <Route path="diaria/:cod/:mat/:tip" element={<Diaria />} />
+            <Route path="cadastrarusuario/:cod/:mat/:tip" element={<CadastrarUsuario />} />
+            <Route path="editarusuario/:cod/:mat/:tip" element={<EditarUsuario />} />
+            <Route path="editar/:cod/:mat/:tip/:id" element={<EditarUsuarioForm />} />
+            <Route path="cadastrardiaria/:cod/:mat/:tip/:id" element={<CadastrarDiaria />} />
+          </Route>
+
+          <Route path="/cidade">
+            <Route path=":cod/:mat/:tip" element={<CadastrarCidade />} />
+            <Route path="editarcidade/:cod/:mat/:tip" element={<EditarCidade />} />
+            <Route path="editar/:cod/:mat/:tip/:id" element={<EditarCidadeForm />} />
+            <Route path="select" element={<SelectCidade />} />
+          </Route>
+
+          <Route path="/escala">
+            <Route path="cadastrar/:cod/:mat/:tip" element={<Escala />} />
+          </Route>
+
           <Route path="/despesas" element={<Despesas />} />
-          <Route path="/cidade/select" element={<SelectCidade />} />
+
         </Routes>
       </BrowserRouter>
 

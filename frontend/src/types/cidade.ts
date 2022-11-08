@@ -4,9 +4,9 @@ export type Cidade = {
     valor: number;
 }
 
-export type UsuarioPage = {
+export type CidadePage = {
     content: Cidade[];
-    last: number;
+    last: boolean;
     totalPages: number;
     totalElements: number;
     first: boolean;

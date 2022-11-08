@@ -13,7 +13,7 @@ import { Cidade } from "../../types/cidade";
 registerLocale('pt-br', ptBR);
 
 function EditarCidade() {
-    var formato = { minimumFractionDigits: 2 , style: 'currency', currency: 'BRL' }
+    var formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' }
 
     let newPageTitle = 'SCD - Editar Cidade';
     document.title = newPageTitle;
@@ -22,10 +22,13 @@ function EditarCidade() {
     const [cidades, setCidade] = useState<Cidade[]>([]);
 
     useEffect(() => {
-        axios.get(`${BASE_URL}/cidade`)
+        axios.get(`${BASE_URL}/cidade/?sort=id`)
             .then(response => {
-                console.log(response.data.content);
-                setCidade(response.data.content);
+                if (response.data == null) {
+                    alert("Nenhuma cidade cadastrada!")
+                } else {
+                    setCidade(response.data.content);
+                }
             })
 
             .catch((err) => {
@@ -60,10 +63,10 @@ function EditarCidade() {
                                                 <tr key={cidade.id}>
                                                     <td>{cidade.id}</td>
                                                     <td>{cidade.nome}</td>
-                                                    <td>{cidade.valor.toLocaleString('pt-br',formato)}</td>
+                                                    <td>{cidade.valor.toLocaleString('pt-br', formato)}</td>
                                                     <td>
                                                         <div className="scd-red-btn-container">
-                                                            <a href={"/cidade/editar/"+`${cod}/${mat}/${tip}/${cidade.id}`}><EditarBotao /></a>
+                                                            <a href={"/cidade/editar/" + `${cod}/${mat}/${tip}/${cidade.id}`}><EditarBotao /></a>
                                                         </div>
                                                     </td>
                                                 </tr>

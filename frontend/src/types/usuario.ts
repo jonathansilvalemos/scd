@@ -8,7 +8,7 @@ export type Usuario = {
 
 export type UsuarioPage = {
     content: Usuario[];
-    last: number;
+    last: boolean;
     totalPages: number;
     totalElements: number;
     first: boolean;
