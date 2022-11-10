@@ -41,7 +41,7 @@ public class UsuarioService {
 		user.setCodigo(usuarioDTO.getCodigo());
 		user.setNome(usuarioDTO.getNome());
 		user.setMatricula(usuarioDTO.getMatricula());
-		user.setSenha(encoder.encode(usuarioDTO.getSenha()));
+		user.setSenha(usuarioDTO.getSenha());
 		user.setTipo(usuarioDTO.getTipo());
 		user = usuarioRepository.saveAndFlush(user);
 		return new UsuarioDTO(user);
@@ -88,7 +88,7 @@ public class UsuarioService {
 			Usuario usuarioCodificado = new Usuario();
 			usuarioCodificado.setMatricula(usuarioDTO.getMatricula());
 			usuarioCodificado.setNome(usuarioDTO.getNome());
-			usuarioCodificado.setSenha(encoder.encode(usuarioDTO.getSenha()));
+			usuarioCodificado.setSenha(usuarioDTO.getSenha());
 			usuarioCodificado.setTipo(usuarioDTO.getTipo());
 			usuarioCodificado = usuarioRepository.save(usuarioCodificado);
 			return new UsuarioDTO(usuarioCodificado);

@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,13 +22,14 @@ import com.jonathanlemos.scd.dto.UsuarioDTO;
 import com.jonathanlemos.scd.services.UsuarioService;
 
 
-
 @RestController
 @RequestMapping(value = "/usuario")
 public class UsuarioController {
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	@Autowired
+	private PasswordEncoder encoder;
 		
 	@GetMapping
 	public Page<UsuarioDTO> findAll(Pageable pageable) {
@@ -42,7 +44,7 @@ public class UsuarioController {
 	@PutMapping
 	@ResponseBody
 	public UsuarioDTO atualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
-		System.out.println("Chegou pra atualizar");
+		usuarioDTO.setSenha(encoder.encode(usuarioDTO.getSenha()));
 		return usuarioService.atualizarUsuario(usuarioDTO);
 	}
 	
@@ -60,6 +62,7 @@ public class UsuarioController {
 	@PostMapping
 	@ResponseBody
 	public ResponseEntity<UsuarioDTO> salvarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+		usuarioDTO.setSenha(encoder.encode(usuarioDTO.getSenha()));
 		UsuarioDTO result = usuarioService.salvarUsuario(usuarioDTO);
 		if (result != null)	return ResponseEntity.ok(result);
 		return ResponseEntity.ok(result);
@@ -69,19 +72,22 @@ public class UsuarioController {
 	@ResponseBody
 	public ResponseEntity<UsuarioDTO> validarSenha(@RequestParam("matricula") Long matricula, 
 												@RequestParam("senha") String senha) {
-		Optional<UsuarioDTO> usuario = usuarioService.login(matricula, senha);
+		//Optional<UsuarioDTO> usuario = usuarioService.login(matricula, senha);
+		boolean valid = false;
+		Optional<UsuarioDTO> usuario = usuarioService.findByMatricula(matricula);
 		if (usuario.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 		} 
-		UsuarioDTO usuarioBanco = usuario.get();
-		return ResponseEntity.ok().body(usuarioBanco);
 		
-		/*UsuarioDTO usuarioBanco = usuario.get();
-		boolean valid = encoder.matches(senha, usuarioBanco.getSenha());
+		valid = encoder.matches(senha, usuario.get().getSenha());
 		
 		HttpStatus status = (valid) ? HttpStatus.OK : HttpStatus.UNAUTHORIZED;
+		UsuarioDTO usuarioBanco = usuario.get();
 		
-		
-		return ResponseEntity.status(status).body(usuarioBanco);*/
+		if (valid) {
+			return ResponseEntity.status(status).body(usuarioBanco);
+		}
+		return ResponseEntity.status(status).body(null);
+				
 	}
 }
