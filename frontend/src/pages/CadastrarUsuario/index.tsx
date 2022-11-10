@@ -54,11 +54,7 @@ function CadastrarUsuario() {
         }).catch((err) => {
             console.log("Erro: " + err);
         });      
-        setCampos({
-            nome:'',
-            matricula:'',
-            senha:''
-        });
+        
     }
 
     return (

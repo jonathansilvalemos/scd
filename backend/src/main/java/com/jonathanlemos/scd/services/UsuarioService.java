@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.jonathanlemos.scd.dto.UsuarioDTO;
@@ -18,9 +17,7 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-	@Autowired
-	private PasswordEncoder encoder;
-
+	
 	@Transactional(readOnly = true)
 	public Page<UsuarioDTO> buscarTodos(Pageable pageable) {
 		Page<Usuario> usuario = usuarioRepository.findAll(pageable);
@@ -47,7 +44,7 @@ public class UsuarioService {
 		return new UsuarioDTO(user);
 	}
 
-	@Transactional
+	/*@Transactional
 	public Optional<UsuarioDTO> login(Long matricula, String senha) {
 		Optional<Usuario> usuario = usuarioRepository.findByMatricula(matricula);
 		if (usuario == null) {
@@ -65,7 +62,7 @@ public class UsuarioService {
 			}
 		}
 		return null;
-	}
+	}*/
 
 	@Transactional
 	public Optional<UsuarioDTO> findByMatricula(Long matricula) {

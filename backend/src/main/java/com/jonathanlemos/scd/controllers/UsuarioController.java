@@ -62,7 +62,9 @@ public class UsuarioController {
 	@PostMapping
 	@ResponseBody
 	public ResponseEntity<UsuarioDTO> salvarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+		
 		usuarioDTO.setSenha(encoder.encode(usuarioDTO.getSenha()));
+		
 		UsuarioDTO result = usuarioService.salvarUsuario(usuarioDTO);
 		if (result != null)	return ResponseEntity.ok(result);
 		return ResponseEntity.ok(result);
