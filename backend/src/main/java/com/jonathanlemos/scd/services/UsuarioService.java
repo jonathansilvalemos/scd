@@ -31,6 +31,22 @@ public class UsuarioService {
 		UsuarioDTO dto = new UsuarioDTO(result);
 		return dto;
 	}
+	
+	@Transactional
+	public UsuarioDTO salvarUsuario(UsuarioDTO usuarioDTO) {
+		Optional<Usuario> usuario = usuarioRepository.findByMatricula(usuarioDTO.getMatricula());
+
+		if (usuario.isEmpty()) {
+			Usuario usuarioCodificado = new Usuario();
+			usuarioCodificado.setMatricula(usuarioDTO.getMatricula());
+			usuarioCodificado.setNome(usuarioDTO.getNome());
+			usuarioCodificado.setSenha(usuarioDTO.getSenha());
+			usuarioCodificado.setTipo(usuarioDTO.getTipo());
+			usuarioCodificado = usuarioRepository.saveAndFlush(usuarioCodificado);
+			return new UsuarioDTO(usuarioCodificado);
+		}
+		return null;
+	}
 
 	@Transactional
 	public UsuarioDTO atualizarUsuario(UsuarioDTO usuarioDTO) {
@@ -77,19 +93,5 @@ public class UsuarioService {
 		return Optional.of(user);
 	}
 
-	@Transactional
-	public UsuarioDTO salvarUsuario(UsuarioDTO usuarioDTO) {
-		Optional<Usuario> usuario = usuarioRepository.findByMatricula(usuarioDTO.getMatricula());
-
-		if (usuario.isEmpty()) {
-			Usuario usuarioCodificado = new Usuario();
-			usuarioCodificado.setMatricula(usuarioDTO.getMatricula());
-			usuarioCodificado.setNome(usuarioDTO.getNome());
-			usuarioCodificado.setSenha(usuarioDTO.getSenha());
-			usuarioCodificado.setTipo(usuarioDTO.getTipo());
-			usuarioCodificado = usuarioRepository.save(usuarioCodificado);
-			return new UsuarioDTO(usuarioCodificado);
-		}
-		return null;
-	}
+	
 }

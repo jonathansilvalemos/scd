@@ -22,7 +22,7 @@ function CadastrarUsuario() {
         senha: ''
     });
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const nome = (event.target as any).nome.value;
         const matricula = (event.target as any).matricula.value;
@@ -41,7 +41,7 @@ function CadastrarUsuario() {
             }
         }
         
-        axios(config).then(response => {
+        await axios(config).then(response => {
             
             console.log(response.data);
             if(isEmpty(response.data)){

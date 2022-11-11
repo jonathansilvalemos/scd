@@ -41,6 +41,14 @@ public class UsuarioController {
 		return usuarioService.findById(id);
 	}
 	
+	@PostMapping
+	public ResponseEntity<UsuarioDTO> salvarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
+		usuarioDTO.setSenha(encoder.encode(usuarioDTO.getSenha()));
+		UsuarioDTO result = usuarioService.salvarUsuario(usuarioDTO);
+		if (result != null)	return ResponseEntity.ok(result);
+		return ResponseEntity.ok(result);
+	}
+	
 	@PutMapping
 	@ResponseBody
 	public UsuarioDTO atualizarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
@@ -57,17 +65,6 @@ public class UsuarioController {
 	@GetMapping(value = "/cadastrardiaria/{matricula}")
 	public void cadastrardiaria(@PathVariable Long matricula) {
 		
-	}
-	
-	@PostMapping
-	@ResponseBody
-	public ResponseEntity<UsuarioDTO> salvarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
-		
-		usuarioDTO.setSenha(encoder.encode(usuarioDTO.getSenha()));
-		
-		UsuarioDTO result = usuarioService.salvarUsuario(usuarioDTO);
-		if (result != null)	return ResponseEntity.ok(result);
-		return ResponseEntity.ok(result);
 	}
 	
 	@PostMapping(value = "/login")
