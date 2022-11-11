@@ -14,7 +14,7 @@ function Login() {
     const [senha, setSenha] = useState("");
     const [usuario, setUsuario] = useState<Usuario>();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
@@ -26,7 +26,7 @@ function Login() {
             }
         }
 
-        axios(config).then(response => {
+        await axios(config).then(response => {
             if (response.status === 200){
                 window.location.href=`/usuario/diaria/${response.data.codigo}/${response.data.matricula}/${response.data.tipo}`;
             } else {
