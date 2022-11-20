@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import DatePicker, { registerLocale } from "react-datepicker";
 import ptBR from 'date-fns/locale/pt-BR';
 import EditarBotao from "../../components/EditarBotao";
+import ExcluirBotao from "../../components/ExcluirBotao";
 import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import NavBarAdmin from "../../components/NavBarAdmin";
@@ -72,7 +73,8 @@ function EditarUsuario() {
                                         <tr>
                                             <th>Código</th>
                                             <th>Nome</th>
-                                            <th>Editar</th>
+                                            <th>Alterar</th>
+                                            <th>Excluir</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -86,6 +88,12 @@ function EditarUsuario() {
                                                             <a href={"/usuario/editar/" + `${cod}/${mat}/${tip}/${u.codigo}`}><EditarBotao /></a>
                                                         </div>
                                                     </td>
+                                                    <td>
+                                                        <div className="scd-red-btn-container">
+                                                            <a href={"/usuario/excluir/" + `${cod}/${mat}/${tip}/${u.codigo}`}><ExcluirBotao /></a>
+                                                        </div>
+                                                    </td>
+
                                                 </tr>
                                             )
                                         )}

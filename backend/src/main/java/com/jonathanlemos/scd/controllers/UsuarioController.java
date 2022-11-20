@@ -67,7 +67,7 @@ public class UsuarioController {
 		
 	}
 	
-	@GetMapping(value = "/login")
+	@PostMapping(value = "/login")
 	public ResponseEntity<UsuarioDTO> validarSenha(@RequestParam("matricula") Long matricula, 
 												@RequestParam("senha") String senha) {
 		//Optional<UsuarioDTO> usuario = usuarioService.login(matricula, senha);

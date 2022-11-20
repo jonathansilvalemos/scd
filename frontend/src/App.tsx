@@ -20,6 +20,8 @@ import EditarCidadeForm from "./pages/EditarCidadeForm";
 import EditarUsuario from "./pages/EditarUsuario";
 import EditarUsuarioForm from "./pages/EditarUsuarioForm";
 import SelectCidade from "./components/SelectCidade";
+import ListarEscalas from "./pages/ListarEscalas";
+import MostrarEscala from "./pages/MostrarEscala";
 
 function App() {
   return (
@@ -37,6 +39,7 @@ function App() {
             <Route path="cadastrarusuario/:cod/:mat/:tip" element={<CadastrarUsuario />} />
             <Route path="editarusuario/:cod/:mat/:tip" element={<EditarUsuario />} />
             <Route path="editar/:cod/:mat/:tip/:id" element={<EditarUsuarioForm />} />
+            <Route path="excluir/:cod/:mat/:tip/:id" element={<EditarUsuario />} />
             <Route path="cadastrardiaria/:cod/:mat/:tip/:id" element={<CadastrarDiaria />} />
           </Route>
 
@@ -49,6 +52,8 @@ function App() {
 
           <Route path="/escala">
             <Route path="cadastrar/:cod/:mat/:tip" element={<Escala />} />
+            <Route path="listar/:cod/:mat/:tip" element={<ListarEscalas />} />
+            <Route path="listar/mostrar/:cod/:mat/:tip/:id" element={<MostrarEscala />} />
           </Route>
 
           <Route path="/despesas" element={<Despesas />} />

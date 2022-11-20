@@ -18,7 +18,7 @@ function Login() {
         event.preventDefault();
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
-            method: 'GET',
+            method: 'POST',
             url: `/usuario/login/?matricula=${matricula}&senha=${senha}`,
             data: {
                 matricula: matricula,
