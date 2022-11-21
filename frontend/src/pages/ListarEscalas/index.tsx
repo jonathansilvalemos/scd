@@ -13,6 +13,7 @@ import PaginationEscala from "../../components/PaginationEscala";
 import { blobToFile } from '../../utils/imagem';
 import { Script } from "vm";
 import MostrarEscala from "../../pages/MostrarEscala";
+import isEmpty from "../../utils/isEmpety";
 
 
 
@@ -31,11 +32,12 @@ function ListarEscalas() {
     let newPageTitle = 'SCD - Listar Escalas';
     document.title = newPageTitle;
 
+    const data = new Date();
     const { cod, mat, tip } = useParams();
     //const [escala, setEscala] = useState<Escala[]>([]);
     const [imagem, setImagem] = useState<Blob>()
     const [arquivo, setArquivo] = useState<any>();
-
+    const [dataEscala, setDataEscala] = useState(data);
     const mostrarEscala = (dado: Blob) => {
         setImagem(dado);
     }
@@ -54,26 +56,50 @@ function ListarEscalas() {
 
     const [pageNumber, setPageNumber] = useState(0);
 
-
+/*
     useEffect(() => {
         async function listarEscalas() {
             const config: AxiosRequestConfig = {
                 baseURL: BASE_URL,
                 method: 'GET',
-                url: `/escala?size=5&page=${pageNumber}&sort=data`
+                url: `/escala/?size=5&page=${pageNumber}&sort=data`
             }
             await axios(config).then(response => {
                 const data = response.data as EscalaPage;
-                setPage(data);        
-                console.log("DATA: " + data.content.map(con=>(con.data)))        
+                setPage(data);   
+                console.log("Dados: " + response);             
             }).catch((err) => {
                 alert('Erro ao carregar Usuários' + err);
             });
         }
         listarEscalas();
 
-    }, [pageNumber])
+    }, [pageNumber])*/
 
+    useEffect(()=>{
+        async function listarEscalasPorData() {
+            const dataViagem = dataEscala.toISOString().slice(0,10);
+
+            const config: AxiosRequestConfig = {
+                baseURL: BASE_URL,
+                method: 'GET',
+                url: `/escala/dia?data=${dataViagem}&size=5&page=${pageNumber}&sort=data`
+            }
+            
+            await axios(config).then(response => {
+                if (isEmpty(response.data)){
+                    alert('Nenhuma escala cadastrada para o dia');
+                }
+                const data = response.data as EscalaPage;
+                setPage(data);                
+            }).catch((err) => {
+                alert('Erro ao carregar Usuários' + err);
+            });
+        }
+        listarEscalasPorData();
+
+    },[dataEscala, pageNumber])
+    
     const handlePageChange = (newPageNumber: number) => {
         setPageNumber(newPageNumber);
     }
@@ -90,6 +116,17 @@ function ListarEscalas() {
                             <h2 className="scd-diarias-titulo">Listar Escalas</h2>
                             <PaginationEscala page={page} onChange={handlePageChange} />
                             <div>
+                                <div className='scd-form-control-container mb-3'>
+                                    <label htmlFor="DatePicker">Data da Escala:</label>
+                                    <DatePicker
+                                        locale="pt-br"
+                                        selected={dataEscala}
+                                        onChange={(date: Date) => setDataEscala(date)}
+                                        className="scd-form-control"
+                                        dateFormat="dd/MM/yyyy"
+                                    />
+
+                                </div>
                                 <table className="scd-diarias-table">
                                     <thead>
                                         <tr>
@@ -104,9 +141,9 @@ function ListarEscalas() {
                                         {page.content.map(u =>
 
                                         (
-                                            
+
                                             <tr key={u.id} onLoad={() => setImagem(u.escala)}>
-                                           
+
                                                 <td>{u.id}</td>
                                                 <td>{new Date(u.data).toLocaleDateString('pt-br')}</td>
 

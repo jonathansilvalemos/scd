@@ -1,5 +1,6 @@
 package com.jonathanlemos.scd.services;
 
+import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,5 +31,13 @@ public class EscalaService {
 	public EscalaDTO buscarId(Long id) {
 		Escala result = escalaRepository.findById(id).get();
 		return new EscalaDTO(result);
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<EscalaDTO> findByData(String data, Pageable pageable) {
+		LocalDate viagem = LocalDate.parse(data);
+		Page<Escala> result = escalaRepository.findByData(viagem, pageable);
+		Page<EscalaDTO> dto = result.map(x -> new EscalaDTO(x));
+		return dto;
 	}
 }

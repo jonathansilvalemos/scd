@@ -46,5 +46,13 @@ public class EscalaController{
 	public EscalaDTO buscarId(@PathVariable Long id) {
 		return escalaService.buscarId(id);
 	}
+	
+	@GetMapping(value = "/dia")
+	@ResponseBody
+	public Page<EscalaDTO> buscarId(@RequestParam("data") String data, Pageable pageable) {
+		return escalaService.findByData(data, pageable);
+	}
+	
+	
 
 }

@@ -8,10 +8,12 @@ import Header from "../../components/Header";
 import './style.css';
 
 function MostrarEscala() {
-    let newPageTitle = 'SCD - Listar Escalas';
+    let newPageTitle = 'SCD - Abertura de Escala';
     document.title = newPageTitle;
 
+
     const [imagem, setImagem] = useState<Blob>();
+    const [data, setData] = useState(new Date());
 
     useEffect(() => {
         async function listarEscalas() {
@@ -23,6 +25,7 @@ function MostrarEscala() {
             await axios(config).then(response => {
                 const data = response.data;
                 setImagem(data.escala);
+                setData(data.data);
             }).catch((err) => {
                 alert('Erro ao carregar Usuários' + err);
             });
@@ -36,22 +39,28 @@ function MostrarEscala() {
     const { cod, mat, tip, id } = useParams();
     return (
         <>
+            <Header />
+            {(() => {
+                if (tip === 'admin') {
+                    return (
+                        <NavBarAdmin />
+                    )
+                } else {
+                    return (
+                        <NavBar />
+                    )
+                }
+            })()}
+            <main>
+                <section id="diarias">
+                    <div className="scd-container-escala">
 
-            <div>
-                <Header/>
-                {(() => {
-                    if (tip === 'admin') {
-                        return (
-                            <NavBarAdmin />
-                        )
-                    } else {
-                        return (
-                            <NavBar />
-                        )
-                    }
-                })()}
-            </div>
-            <embed src={`data:application/pdf;base64,${imagem}`} className='embed' />
+                        <h2 className="scd-diarias-titulo mb-2">Escala de {new Date(data).toLocaleDateString('pt-br')}</h2>
+                        <embed src={`data:application/pdf;base64,${imagem}`} className='embed' />
+
+                    </div>
+                </section>
+            </main>
         </>
     )
 }
