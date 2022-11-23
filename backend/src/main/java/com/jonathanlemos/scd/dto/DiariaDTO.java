@@ -1,17 +1,23 @@
 package com.jonathanlemos.scd.dto;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import com.jonathanlemos.scd.entities.Diaria;
 
-public class DiariaDTO {
+public class DiariaDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private Long id;
 	private LocalDate data;
+	private String cidade;
+	private Double valorDiaria;
 	private Double valorGasto;
 	private int portaria;
-	private Boolean status;
-	private String compDespesa;
-	private String compDesloca;
+	private int status;
+	private byte[] compDespesa;
+	private byte[] compDesloca;
+	
+	private UsuarioDTO usuario;
 	
 	public DiariaDTO() {
 		
@@ -20,6 +26,8 @@ public class DiariaDTO {
 	public DiariaDTO(Diaria diaria) {
 		id = diaria.getId();
 		data = diaria.getData();
+		cidade = diaria.getCidade();
+		valorDiaria = diaria.getValorDiaria();
 		valorGasto = diaria.getValorGasto();
 		portaria = diaria.getPortaria();
 		status = diaria.getStatus();
@@ -27,16 +35,44 @@ public class DiariaDTO {
 		compDesloca = diaria.getCompDesloca();
 	}
 	
-	public DiariaDTO(Long id, LocalDate data, Double valorGasto, int portaria, Boolean status, String compDespesa,
-			String compDesloca) {
+	public DiariaDTO(Long id, LocalDate data, String cidade, Double valorDiaria, Double valorGasto, int portaria, int status, byte[] compDespesa,
+			byte[] compDesloca) {
 		
 		this.id = id;
 		this.data = data;
+		this.cidade = cidade;
+		this.valorDiaria = valorDiaria;
 		this.valorGasto = valorGasto;
 		this.portaria = portaria;
 		this.status = status;
 		this.compDespesa = compDespesa;
 		this.compDesloca = compDesloca;
+	}
+	
+	
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public Double getValorDiaria() {
+		return valorDiaria;
+	}
+
+	public void setValorDiaria(Double valorDiaria) {
+		this.valorDiaria = valorDiaria;
+	}	
+
+	public UsuarioDTO getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UsuarioDTO usuario) {
+		this.usuario = usuario;
 	}
 
 	public Long getId() {
@@ -71,27 +107,27 @@ public class DiariaDTO {
 		this.portaria = portaria;
 	}
 
-	public Boolean getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(Boolean status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
-	public String getCompDespesa() {
+	public byte[] getCompDespesa() {
 		return compDespesa;
 	}
 
-	public void setCompDespesa(String compDespesa) {
+	public void setCompDespesa(byte[] compDespesa) {
 		this.compDespesa = compDespesa;
 	}
 
-	public String getCompDesloca() {
+	public byte[] getCompDesloca() {
 		return compDesloca;
 	}
 
-	public void setCompDesloca(String compDesloca) {
+	public void setCompDesloca(byte[] compDesloca) {
 		this.compDesloca = compDesloca;
 	}
 	

@@ -35,7 +35,7 @@ public class CidadeController {
 	
 	@PostMapping
 	@ResponseBody
-	public ResponseEntity<CidadeDTO> salvarUsuario(@RequestBody CidadeDTO cidadeDTO) {
+	public ResponseEntity<CidadeDTO> salvarCidade(@RequestBody CidadeDTO cidadeDTO) {
 		CidadeDTO result = cidadeService.salvarCidade(cidadeDTO);
 		if (result != null) return ResponseEntity.ok().body(result);
 		return ResponseEntity.status(400).body(result);

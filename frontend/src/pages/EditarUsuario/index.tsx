@@ -7,16 +7,17 @@ import ExcluirBotao from "../../components/ExcluirBotao";
 import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import NavBarAdmin from "../../components/NavBarAdmin";
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import { BASE_URL } from "../../utils/requests";
 import { Usuario, UsuarioPage } from "../../types/usuario";
 import Pagination from "../../components/Pagination";
 
 
+
 registerLocale('pt-br', ptBR);
 
 type Props = {
-    u:Usuario;
+    u: Usuario;
 }
 
 function EditarUsuario() {
@@ -26,7 +27,8 @@ function EditarUsuario() {
 
     const { cod, mat, tip } = useParams();
     const [usuario, setUsuario] = useState<Usuario[]>([]);
-   
+
+
     const [page, setPage] = useState<UsuarioPage>({
         content: [],
         last: true,
@@ -51,11 +53,29 @@ function EditarUsuario() {
                 alert('Erro ao carregar Usuários' + err);
             });
     }, [pageNumber])
+    
+    const excluirUsuario = async (id: number) => { 
+        const config: AxiosRequestConfig = {
+            baseURL: BASE_URL,
+            method: 'DELETE',
+            url: `/usuario/${id}`            
+        }
 
-    const handlePageChange = (newPageNumber : number) => {
-        setPageNumber(newPageNumber);
+        await axios(config).then(response => {
+            console.log(response);
+            if (response.status === 200) {
+                window.location.href = `/usuario/editarusuario/${cod}/${mat}/${tip}`;
+            } else {
+                alert("Erro");
+            }
+        }).catch((err) => {
+            alert("Erro na autenticação!")
+        });
     }
 
+    const handlePageChange = (newPageNumber: number) => {
+        setPageNumber(newPageNumber);
+    }
     return (
         <>
             <Header />
@@ -66,7 +86,7 @@ function EditarUsuario() {
 
                         <div className="scd-card">
                             <h2 className="scd-diarias-titulo">Editar Usuários</h2>
-                            <Pagination page={page} onChange={handlePageChange}/>
+                            <Pagination page={page} onChange={handlePageChange} />
                             <div>
                                 <table className="scd-diarias-table">
                                     <thead>
@@ -78,24 +98,28 @@ function EditarUsuario() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {page.content.map(u=>
-                                            (
-                                                <tr key={u.codigo}>
-                                                    <td>{u.codigo}</td>
-                                                    <td>{u.nome}</td>
-                                                    <td>
-                                                        <div className="scd-red-btn-container">
-                                                            <a href={"/usuario/editar/" + `${cod}/${mat}/${tip}/${u.codigo}`}><EditarBotao /></a>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div className="scd-red-btn-container">
-                                                            <a href={"/usuario/excluir/" + `${cod}/${mat}/${tip}/${u.codigo}`}><ExcluirBotao /></a>
-                                                        </div>
-                                                    </td>
+                                        {page.content.map(u =>
+                                        (
+                                            <tr key={u.codigo}>
+                                                <td>{u.codigo}</td>
+                                                <td>{u.nome}</td>
+                                                <td>
+                                                    <div className="scd-red-btn-container">
+                                                        <a href={"/usuario/editar/" + `${cod}/${mat}/${tip}/${u.codigo}`}><EditarBotao /></a>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div className="scd-red-btn-container">
+                                                        <a href={"/usuario/excluir/" + `${cod}/${mat}/${tip}/${u.codigo}`} onClick={() =>  {
+                                                            if(confirm(`Deseja excluir o usuário ${u.nome}?`)){
+                                                                excluirUsuario(u.codigo);        
+                                                            }
+                                                            } }><ExcluirBotao /></a>
+                                                    </div>
+                                                </td>
 
-                                                </tr>
-                                            )
+                                            </tr>
+                                        )
                                         )}
                                     </tbody>
                                 </table>

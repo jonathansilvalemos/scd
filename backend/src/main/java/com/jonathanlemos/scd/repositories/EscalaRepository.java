@@ -11,7 +11,7 @@ import com.jonathanlemos.scd.entities.Escala;
 
 @Repository
 public interface EscalaRepository extends JpaRepository<Escala, Long>{
-	
+		
 	@Query("SELECT obj FROM Escala obj WHERE obj.data = :data")
 	public Page<Escala> findByData(LocalDate data, Pageable pageable);
 }

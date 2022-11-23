@@ -39,8 +39,8 @@ function App() {
             <Route path="cadastrarusuario/:cod/:mat/:tip" element={<CadastrarUsuario />} />
             <Route path="editarusuario/:cod/:mat/:tip" element={<EditarUsuario />} />
             <Route path="editar/:cod/:mat/:tip/:id" element={<EditarUsuarioForm />} />
-            <Route path="excluir/:cod/:mat/:tip/:id" element={<EditarUsuario />} />
-            <Route path="cadastrardiaria/:cod/:mat/:tip/:id" element={<CadastrarDiaria />} />
+            <Route path="excluir/:cod/:mat/:tip/:codigo" element={<EditarUsuario />} />
+            <Route path="cadastrardiaria/:cod/:mat/:tip" element={<CadastrarDiaria />} />
           </Route>
 
           <Route path="/cidade">
@@ -56,7 +56,7 @@ function App() {
             <Route path="listar/mostrar/:cod/:mat/:tip/:id" element={<MostrarEscala />} />
           </Route>
 
-          <Route path="/despesas" element={<Despesas />} />
+          <Route path="/despesas/:cod/:mat/:tip" element={<Despesas />} />
 
         </Routes>
       </BrowserRouter>

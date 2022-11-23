@@ -10,6 +10,7 @@ import { BASE_URL } from "utils/requests";
 import { stringify } from "querystring";
 import NavBarAdmin from "../../components/NavBarAdmin";
 
+
 registerLocale('pt-br', ptBR);
 
 function Diaria() {
@@ -34,20 +35,7 @@ function Diaria() {
     return (
         <>
             <Header />
-            <div>
-                {(() => {
-                    if (tip === 'admin') {
-                        return (
-                            <NavBarAdmin />
-                        )                    
-                    } else {
-                        return (
-                            <NavBar />
-                        )
-                    }
-                })()}
-            </div>
-            
+            <NavBarAdmin />
             <main>
                 <section id="diarias">
                     <div className="scd-container">

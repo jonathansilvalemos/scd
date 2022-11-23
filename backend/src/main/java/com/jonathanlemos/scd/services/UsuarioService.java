@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.jonathanlemos.scd.dto.UsuarioDTO;
 import com.jonathanlemos.scd.entities.Usuario;
 import com.jonathanlemos.scd.repositories.UsuarioRepository;
@@ -17,7 +18,6 @@ public class UsuarioService {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-	
 	@Transactional(readOnly = true)
 	public Page<UsuarioDTO> buscarTodos(Pageable pageable) {
 		Page<Usuario> usuario = usuarioRepository.findAll(pageable);
@@ -31,7 +31,7 @@ public class UsuarioService {
 		UsuarioDTO dto = new UsuarioDTO(result);
 		return dto;
 	}
-	
+
 	@Transactional
 	public UsuarioDTO salvarUsuario(UsuarioDTO usuarioDTO) {
 		Optional<Usuario> usuario = usuarioRepository.findByMatricula(usuarioDTO.getMatricula());
@@ -60,38 +60,41 @@ public class UsuarioService {
 		return new UsuarioDTO(user);
 	}
 
-	/*@Transactional
-	public Optional<UsuarioDTO> login(Long matricula, String senha) {
-		Optional<Usuario> usuario = usuarioRepository.findByMatricula(matricula);
-		if (usuario == null) {
-			return null;
-		} else {
-			if (encoder.matches(senha, usuario.get().getSenha())) {
-				UsuarioDTO user = new UsuarioDTO();
-				user.setCodigo(usuario.get().getCodigo());
-				user.setMatricula(usuario.get().getMatricula());
-				user.setNome(usuario.get().getNome());
-				user.setSenha(usuario.get().getSenha());
-				user.setTipo(usuario.get().getTipo());
+	public void excluirUsuario(Long codigo) {
+		usuarioRepository.deleteById(codigo);
 
-				return Optional.of(user);
-			}
-		}
-		return null;
-	}*/
+	}
+
+	/*
+	 * @Transactional public Optional<UsuarioDTO> login(Long matricula, String
+	 * senha) { Optional<Usuario> usuario =
+	 * usuarioRepository.findByMatricula(matricula); if (usuario == null) { return
+	 * null; } else { if (encoder.matches(senha, usuario.get().getSenha())) {
+	 * UsuarioDTO user = new UsuarioDTO();
+	 * user.setCodigo(usuario.get().getCodigo());
+	 * user.setMatricula(usuario.get().getMatricula());
+	 * user.setNome(usuario.get().getNome());
+	 * user.setSenha(usuario.get().getSenha());
+	 * user.setTipo(usuario.get().getTipo());
+	 * 
+	 * return Optional.of(user); } } return null; }
+	 */
 
 	@Transactional
 	public Optional<UsuarioDTO> findByMatricula(Long matricula) {
 		Optional<Usuario> usuario = usuarioRepository.findByMatricula(matricula);
-		UsuarioDTO user = new UsuarioDTO();
-		user.setCodigo(usuario.get().getCodigo());
-		user.setMatricula(usuario.get().getMatricula());
-		user.setNome(usuario.get().getNome());
-		user.setSenha(usuario.get().getSenha());
-		user.setTipo(usuario.get().getTipo());
+		if (usuario != null) {
+			UsuarioDTO user = new UsuarioDTO();
+			user.setCodigo(usuario.get().getCodigo());
+			user.setMatricula(usuario.get().getMatricula());
+			user.setNome(usuario.get().getNome());
+			user.setSenha(usuario.get().getSenha());
+			user.setTipo(usuario.get().getTipo());
 
-		return Optional.of(user);
+			return Optional.of(user);
+		} else {
+			return null;
+		}
 	}
 
-	
 }

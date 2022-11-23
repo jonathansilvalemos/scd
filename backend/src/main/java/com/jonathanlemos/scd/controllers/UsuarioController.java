@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,13 @@ public class UsuarioController {
 		return usuarioService.findById(id);
 	}
 	
+	@DeleteMapping(value = "/{codigo}")
+	@ResponseBody
+	public ResponseEntity<Boolean> excluirUsuário(@PathVariable("codigo") Long codigo) {
+		usuarioService.excluirUsuario(codigo);
+		return ResponseEntity.ok(true);
+	}
+	
 	@PostMapping
 	public ResponseEntity<UsuarioDTO> salvarUsuario(@RequestBody UsuarioDTO usuarioDTO) {
 		usuarioDTO.setSenha(encoder.encode(usuarioDTO.getSenha()));
@@ -68,11 +76,13 @@ public class UsuarioController {
 	}
 	
 	@PostMapping(value = "/login")
+	@ResponseBody
 	public ResponseEntity<UsuarioDTO> validarSenha(@RequestParam("matricula") Long matricula, 
 												@RequestParam("senha") String senha) {
-		//Optional<UsuarioDTO> usuario = usuarioService.login(matricula, senha);
+		
 		boolean valid = false;
 		Optional<UsuarioDTO> usuario = usuarioService.findByMatricula(matricula);
+		
 		if (usuario.isEmpty()) {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
 		} 

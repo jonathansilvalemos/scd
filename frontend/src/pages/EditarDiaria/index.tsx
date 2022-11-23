@@ -5,7 +5,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { useState } from "react";
 import './styles.css';
 import Header from "../../components/Header";
-import NavBar from "../../components/NavBar";
+import NavBarAdmin from "../../components/NavBarAdmin";
 
 
 registerLocale('pt-br', ptBR);
@@ -22,7 +22,7 @@ function EditarDiaria() {
     return (
         <div>
             <Header />
-            <NavBar />
+            <NavBarAdmin />
             <main>
                 <section id="diarias">
                     <div className="scd-container">

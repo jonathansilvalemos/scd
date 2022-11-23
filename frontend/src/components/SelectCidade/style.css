@@ -1,0 +1,28 @@
+.scd-form-container-cadastro-select{
+    width: 100%;
+    align-items: center;
+    
+}
+
+
+.scd-form-control-select{
+    max-width: 300px;
+    height: 46px;
+    background-color: #1B2531;
+    border: 1px solid #384459;
+    border-radius: 5px;
+    color: #9AAABE;
+    padding: 0 20px;
+    font-size: 18px;    
+}
+
+.scd-form-control-valor-select{
+    max-width: 150px;
+    height: 46px;
+    background-color: #1B2531;
+    border: 1px solid #384459;
+    border-radius: 5px;
+    color: #9AAABE;
+    padding: 0 20px;
+    font-size: 18px;    
+}

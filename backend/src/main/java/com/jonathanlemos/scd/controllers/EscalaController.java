@@ -49,7 +49,7 @@ public class EscalaController{
 	
 	@GetMapping(value = "/dia")
 	@ResponseBody
-	public Page<EscalaDTO> buscarId(@RequestParam("data") String data, Pageable pageable) {
+	public Page<EscalaDTO> buscarData(@RequestParam("data") String data, Pageable pageable) {
 		return escalaService.findByData(data, pageable);
 	}
 	

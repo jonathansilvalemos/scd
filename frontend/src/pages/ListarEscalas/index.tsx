@@ -56,7 +56,7 @@ function ListarEscalas() {
 
     const [pageNumber, setPageNumber] = useState(0);
 
-/*
+
     useEffect(() => {
         async function listarEscalas() {
             const config: AxiosRequestConfig = {
@@ -74,7 +74,7 @@ function ListarEscalas() {
         }
         listarEscalas();
 
-    }, [pageNumber])*/
+    }, [pageNumber])
 
     useEffect(()=>{
         async function listarEscalasPorData() {

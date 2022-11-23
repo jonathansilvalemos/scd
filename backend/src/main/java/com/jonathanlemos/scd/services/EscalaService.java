@@ -35,7 +35,7 @@ public class EscalaService {
 	
 	@Transactional(readOnly = true)
 	public Page<EscalaDTO> findByData(String data, Pageable pageable) {
-		LocalDate viagem = LocalDate.parse(data);
+		LocalDate viagem = LocalDate.parse(data).plusDays(1);
 		Page<Escala> result = escalaRepository.findByData(viagem, pageable);
 		Page<EscalaDTO> dto = result.map(x -> new EscalaDTO(x));
 		return dto;

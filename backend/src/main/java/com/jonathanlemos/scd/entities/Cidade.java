@@ -1,12 +1,9 @@
 package com.jonathanlemos.scd.entities;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,9 +14,6 @@ public class Cidade {
 	private Long id;
 	private String nome;
 	private Double valor;
-	
-	@OneToMany(mappedBy = "cidade")
-	private List<Diaria> diaria;
 	
 	public Long getId() {
 		return id;

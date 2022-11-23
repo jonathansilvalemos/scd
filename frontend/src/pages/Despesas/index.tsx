@@ -5,7 +5,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import EditarBotao from "../../components/EditarBotao";
 import { useState } from "react";
 import Header from "../../components/Header";
-import NavBar from "../../components/NavBar";
+import NavBarAdmin from "../../components/NavBarAdmin";
 
 registerLocale('pt-br', ptBR);
 
@@ -20,12 +20,12 @@ function Despesas() {
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
 
-    const matricula = useParams();
+    const { cod, mat, tip } = useParams();
 
     return (
         <div>
             <Header />
-            <NavBar />
+            <NavBarAdmin />
             <main>
                 <section id="diarias">
                     <div className="scd-container">

@@ -2,13 +2,20 @@ package com.jonathanlemos.scd.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import com.jonathanlemos.scd.dto.UsuarioDTO;
 
 @Entity
 @Table(name = "tb_usuario")
@@ -23,8 +30,21 @@ public class Usuario {
 	private String senha;
 	private String tipo;
 	
-	@OneToMany
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name="usuario_codigo", referencedColumnName = "codigo")
 	private List<Diaria> diaria;
+	
+	public Usuario() {
+		
+	}
+	
+	public Usuario(UsuarioDTO usuario) {
+		nome = usuario.getNome();
+		matricula = usuario.getMatricula();
+		tipo = usuario.getTipo();
+		senha = usuario.getSenha();
+	}
 	
 	public String getTipo() {
 		return tipo;

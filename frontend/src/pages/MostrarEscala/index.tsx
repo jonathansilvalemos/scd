@@ -1,5 +1,4 @@
 import axios, { AxiosRequestConfig } from "axios";
-import NavBar from "../../components/NavBar";
 import NavBarAdmin from "../../components/NavBarAdmin";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -40,17 +39,7 @@ function MostrarEscala() {
     return (
         <>
             <Header />
-            {(() => {
-                if (tip === 'admin') {
-                    return (
-                        <NavBarAdmin />
-                    )
-                } else {
-                    return (
-                        <NavBar />
-                    )
-                }
-            })()}
+            <NavBarAdmin />
             <main>
                 <section id="diarias">
                     <div className="scd-container-escala">
