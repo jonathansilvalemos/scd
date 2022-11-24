@@ -28,6 +28,26 @@ function CadastrarUsuario() {
         const matricula = (event.target as any).matricula.value;
         const senha = (event.target as any).senha.value;
         const tipousuario = (event.target as any).tipo.value;
+        const formData = new FormData();
+        formData.append('nome', nome);
+        formData.append('matricula', matricula);
+        formData.append('senha', senha);
+        formData.append('tipo', tipousuario);
+
+        axios.post(`${BASE_URL}/usuario`, formData)
+        .then(response=>{
+            console.log(response.data);
+            if(isEmpty(response.data)){
+                alert("Usuário já cadastrado!");
+            } else {
+                alert("Usuário cadastrado com sucesso!");
+                window.location.href=`/usuario/cadastrarusuario/${cod}/${mat}/${tip}`;
+            }
+
+        }).catch((err) => {
+            console.log("Erro: " + err);
+        }); 
+        /*
 
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
@@ -53,7 +73,7 @@ function CadastrarUsuario() {
 
         }).catch((err) => {
             console.log("Erro: " + err);
-        });      
+        });      */
         
     }
 
@@ -110,9 +130,7 @@ function CadastrarUsuario() {
                                     </div>
                                 </div>
                                 <div className="scd-btn-login">
-
                                     <input type='submit' className='btn-login-form' value="Cadastrar" />
-
                                 </div>
                             </form>
                         </div>
