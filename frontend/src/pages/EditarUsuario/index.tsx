@@ -69,7 +69,7 @@ function EditarUsuario() {
                 alert("Erro");
             }
         }).catch((err) => {
-            alert("Erro na autenticação!")
+            alert("Erro na atualização")
         });
     }
 
