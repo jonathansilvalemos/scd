@@ -9,8 +9,6 @@ import NavBarAdmin from '../../components/NavBarAdmin';
 import axios, { AxiosRequestConfig } from 'axios';
 import isEmpty from '../../utils/isEmpety';
 import { BASE_URL } from '../../utils/requests';
-import S3 from 'react-aws-s3-typescript';
-import { uploadFile } from '../../types/uploadFile';
 
 registerLocale('pt-br', ptBR);
 
