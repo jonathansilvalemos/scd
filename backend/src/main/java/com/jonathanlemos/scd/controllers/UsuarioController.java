@@ -50,7 +50,7 @@ public class UsuarioController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<UsuarioDTO> salvarUsuario(/*
+	public ResponseEntity<UsuarioDTO> salvarUsuario(
 			@RequestParam("nome") String nome, 
 			@RequestParam("matricula") Long matricula,
 			@RequestParam("tipo") String tipoUsuario,
@@ -60,11 +60,11 @@ public class UsuarioController {
 		dto.setMatricula(matricula);
 		dto.setSenha(encoder.encode(senha));
 		dto.setTipo(tipoUsuario);
-		UsuarioDTO result = usuarioService.salvarUsuario(dto);*/
-			@RequestBody UsuarioDTO usuarioDTO) {
+		UsuarioDTO result = usuarioService.salvarUsuario(dto);
+			/*@RequestBody UsuarioDTO usuarioDTO) {
 		usuarioDTO.setSenha(encoder.encode(usuarioDTO.getSenha()));
 		UsuarioDTO result = usuarioService.salvarUsuario(usuarioDTO);
-		if (result != null)	return ResponseEntity.ok(result);
+		if (result != null)	return ResponseEntity.ok(result);*/
 		return ResponseEntity.ok(result);
 	}
 	
