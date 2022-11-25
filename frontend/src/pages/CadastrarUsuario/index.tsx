@@ -33,7 +33,7 @@ function CadastrarUsuario() {
         formData.append('matricula', matricula);
         formData.append('senha', senha);
         formData.append('tipo', tipousuario);
-
+/*
         axios.post(`${BASE_URL}/usuario`, formData)
         .then(response=>{
             console.log(response.data);
@@ -46,8 +46,8 @@ function CadastrarUsuario() {
 
         }).catch((err) => {
             console.log("Erro: " + err);
-        }); 
-        /*
+        }); */
+        
 
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
@@ -73,7 +73,7 @@ function CadastrarUsuario() {
 
         }).catch((err) => {
             console.log("Erro: " + err);
-        });      */
+        });      
         
     }
 
