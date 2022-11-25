@@ -34,7 +34,7 @@ function CadastrarUsuario() {
         formData.append('senha', senha);
         formData.append('tipo', tipousuario);
 
-        await axios.post(`${BASE_URL}/usuario`, formData)
+       /* await axios.post(`${BASE_URL}/usuario`, formData)
         .then(response=>{
             console.log(response.data);
             if(isEmpty(response.data)){
@@ -46,19 +46,20 @@ function CadastrarUsuario() {
 
         }).catch((err) => {
             console.log("Erro: " + err);
-        }); 
+        }); */
         
 
-      /*  const config: AxiosRequestConfig = {
+     const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
             method: 'POST',
             url: '/usuario',
-            data: {
+            data: formData
+            /*{
                 nome: nome,
                 matricula: matricula,
                 senha: senha,
                 tipo: tipousuario
-            }
+            }*/
         }
         
         await axios(config).then(response => {
@@ -73,7 +74,7 @@ function CadastrarUsuario() {
 
         }).catch((err) => {
             console.log("Erro: " + err);
-        });      */
+        });      
         
     }
 
