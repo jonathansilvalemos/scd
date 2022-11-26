@@ -96,6 +96,37 @@ function CadastrarDiaria() {
         console.log("Deslocamento: " + deslocamento);
         console.log("Despesa: " + despesa);
         console.log("Código usuário: " + cod);
+        
+                
+        /*const config: AxiosRequestConfig = {
+            baseURL: BASE_URL,
+            method: 'POST',
+            url: '/diaria',
+            data: {
+                data: dataEscalada,
+                cidade: texto,
+                valorDiaria: valorDiaria,
+                valorGasto: valorGastoDiaria,
+                portaria: portariaViagem,
+                status: status,
+                usuario: formData
+            }
+        }
+        
+        await axios(formData,config).then(response => {
+            
+            console.log(response.data);
+            if(isEmpty(response.data)){
+                alert("Diária já cadastrado!");
+            } else {
+                alert("Diária cadastrado com sucesso!");
+                window.location.href=`/usuario/cadastrarusuario/${cod}/${mat}/${tip}`;
+            }
+
+        }).catch((err) => {
+            console.log("Erro: " + err);
+        });*/
+        
 
         await axios.post(`${BASE_URL}/diaria`, formData)
             .then(response => {

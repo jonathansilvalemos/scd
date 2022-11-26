@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -40,13 +41,14 @@ public class DiariaController {
 	}
 
 	@PostMapping(consumes = "multipart/form-data")
-	public ResponseEntity<DiariaDTO> cadastrarEscala(@RequestParam("dataviagem") String dataViagem,
+	public ResponseEntity<DiariaDTO> cadastrarEscala(
+			@RequestParam("dataviagem") String dataViagem,
 			@RequestParam("cidadeviagem") String cidadeViagem,
 			@RequestParam("valordiariaviagem") Double valorDiariaViagem,
 			@RequestParam("valorgastoviagem") Double valorGastoViagem,
 			@RequestParam("portariaviagem") int portariaViagem, @RequestParam("statusviagem") int statusViagem,
-			@RequestParam("deslocamentoviagem") MultipartFile deslocamentoViagem,
-			@RequestParam("despesaviagem") MultipartFile despesaViagem,
+			@RequestPart("deslocamentoviagem") MultipartFile deslocamentoViagem,
+			@RequestPart("despesaviagem") MultipartFile despesaViagem,
 			@RequestParam("usuarioviagem") Long usuarioViagem) throws IOException {
 		DiariaDTO diaria = new DiariaDTO();
 		LocalDate dataNova = LocalDate.parse(dataViagem);
