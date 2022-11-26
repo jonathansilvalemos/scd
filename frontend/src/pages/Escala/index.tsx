@@ -37,22 +37,7 @@ function Escala() {
 
         const dataEscalada = dataEscala.toISOString().slice(0, 10);
         const formData = new FormData();
-     /*  if(arquivo){
-            uploadFile(arquivo);
-        }
-        
-        const url = s3.generateUploadURL();
-        const { url } = await fetch('/s3Url').then(res=>res.json());
-        console.log(url.then(result=>{
-            setDado(result);
-            console.log("resultado:"+result);
-        }));
-         await axios.post(`${dado}/`, arquivo)
-        .then(response=>{
-            console.log(response.data);
-        })*/
-        
-        
+     
         if (arquivo) {
             console.log("Data da escala: " + dataEscala);
             formData.append('diaescala', dataEscalada);

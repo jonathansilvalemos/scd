@@ -3,6 +3,7 @@ package com.jonathanlemos.scd.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.Type;
 
 import com.jonathanlemos.scd.dto.DiariaDTO;
 
@@ -28,11 +33,15 @@ public class Diaria implements Serializable{
 	private int portaria;
 	private int status;
 	@Lob
+	@Type(type = "org.hibernate.type.ImageType")
 	private byte[] compDespesa;
+	
 	@Lob
+	@Type(type = "org.hibernate.type.ImageType")
 	private byte[] compDesloca;
 	
-	@OneToOne
+	@OnDelete(action = OnDeleteAction.NO_ACTION)
+	@OneToOne(cascade = CascadeType.MERGE, orphanRemoval = false)
 	private Usuario usuario;
 	
 	public Diaria() {
@@ -40,6 +49,7 @@ public class Diaria implements Serializable{
 	}
 	
 	public Diaria (DiariaDTO diaria) {
+		id = diaria.getId();
 		data = diaria.getData();
 		cidade = diaria.getCidade();
 		valorDiaria = diaria.getValorDiaria();

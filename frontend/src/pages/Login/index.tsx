@@ -30,7 +30,7 @@ function Login() {
 
         await axios(config).then(response => {
             if (response.status === 200) {
-                window.location.href = `/usuario/diaria/${response.data.codigo}/${response.data.matricula}/${response.data.tipo}`;
+                window.location.href = `/diaria/${response.data.codigo}/${response.data.matricula}/${response.data.tipo}`;
             } else {
                 alert("Erro");
             }

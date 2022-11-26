@@ -33,6 +33,7 @@ public class DiariaDTO implements Serializable{
 		status = diaria.getStatus();
 		compDespesa = diaria.getCompDespesa();
 		compDesloca = diaria.getCompDesloca();
+		usuario = new UsuarioDTO(diaria.getUsuario());
 	}
 	
 	public DiariaDTO(Long id, LocalDate data, String cidade, Double valorDiaria, Double valorGasto, int portaria, int status, byte[] compDespesa,

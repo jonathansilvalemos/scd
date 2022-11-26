@@ -5,10 +5,12 @@ import ptBR from 'date-fns/locale/pt-BR';
 import EditarBotao from "../../components/EditarBotao";
 import { useEffect, useState } from "react";
 import Header from "../../components/Header";
-import NavBar from "../../components/NavBar";
-import { BASE_URL } from "utils/requests";
-import { stringify } from "querystring";
+import { BASE_URL } from "../../utils/requests";
 import NavBarAdmin from "../../components/NavBarAdmin";
+import { DiariaPage } from "../../types/diaria";
+import axios from "axios";
+import PaginationDiaria from "../../components/PaginationDiaria";
+
 
 
 registerLocale('pt-br', ptBR);
@@ -25,12 +27,36 @@ function Diaria() {
     const [maxDate, setMaxDate] = useState(max);
 
     const { cod, mat, tip } = useParams();
+    const [page, setPage] = useState<DiariaPage>({
+        content: [],
+        last: true,
+        totalPages: 0,
+        totalElements: 0,
+        first: true,
+        size: 5,
+        number: 0,
+        numberOfElements: 0,
+        empty: true
+    });
+    const [pageNumber, setPageNumber] = useState(0);
 
-    console.log("codigo: " + cod + " matricula: " + mat + "Tipo: " + tip)
-    /*useEffect(()=>{
-        axios.get(`${BASE_URL}/usuario`)
-    },[])*/
+    useEffect(() => {
+        const dataMinima = minDate.toISOString().slice(0, 10);
+        const dataMaxima = maxDate.toISOString().slice(0, 10);
 
+        axios.get(`${BASE_URL}/diaria/usuario?user=${cod}&mindate=${dataMinima}&maxdate=${dataMaxima}&size=5&page=${pageNumber}&sort=id`)
+            .then(response => {
+                const data = response.data as DiariaPage;
+                setPage(data);
+            })
+            .catch((err) => {
+                alert('Erro ao carregar Usuários' + err);
+            });
+    }, [minDate, maxDate, pageNumber])
+
+    const handlePageChange = (newPageNumber: number) => {
+        setPageNumber(newPageNumber);
+    }
 
     return (
         <>
@@ -42,6 +68,7 @@ function Diaria() {
 
                         <div className="scd-card">
                             <h2 className="scd-diarias-titulo">Pesquisar Diárias</h2>
+                            <PaginationDiaria page={page} onChange={handlePageChange} />
                             <div>
                                 <div className="scd-form-control-container">
                                     <label htmlFor="DatePicker">Data Inicial</label>
@@ -78,42 +105,24 @@ function Diaria() {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>05/10/2022</td>
-                                            <td>Piratini</td>
-                                            <td className="show576">1639</td>
-                                            <td>R$ 77,00</td>
-                                            <td>Pendente</td>
-                                            <td>
-                                                <div className="scd-red-btn-container">
-                                                    <a href="/editar"><EditarBotao /></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>06/10/2022</td>
-                                            <td>Bagé</td>
-                                            <td className="show576">1642</td>
-                                            <td>R$ 77,00</td>
-                                            <td>Pendene</td>
-                                            <td>
-                                                <div className="scd-red-btn-container">
-                                                    <a href="/editar"><EditarBotao /></a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>07/10/2022</td>
-                                            <td>Pelotas</td>
-                                            <td className="show576">1649</td>
-                                            <td>R$ 44,00</td>
-                                            <td>Pendente</td>
-                                            <td>
-                                                <div className="scd-red-btn-container">
-                                                    <a href="/editar"><EditarBotao /></a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        {page.content.map(u => {
+                                            return (
+                                                <tr key={u.id}>
+                                                    <td>{new Date(u.data).toLocaleDateString('pr-br')}</td>
+                                                    <td>{u.cidade}</td>
+                                                    <td>{u.portaria}</td>
+                                                    <td>{u.valorDiaria}</td>
+                                                    <td>{u.status === 0 ? 'Pendente' : 'Pago'}</td>
+                                                    <td>
+                                                        <div className="scd-red-btn-container">
+                                                            <a href={`/diaria/editar/${cod}/${mat}/${tip}/${u.id}`}><EditarBotao /></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                        }
+
                                     </tbody>
                                 </table>
                             </div>

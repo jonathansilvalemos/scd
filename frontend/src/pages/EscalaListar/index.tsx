@@ -10,9 +10,6 @@ import axios, { AxiosRequestConfig } from "axios";
 import { BASE_URL } from "../../utils/requests";
 import { Escala, EscalaPage } from "../../types/escala";
 import PaginationEscala from "../../components/PaginationEscala";
-import { blobToFile } from '../../utils/imagem';
-import { Script } from "vm";
-import MostrarEscala from "../../pages/MostrarEscala";
 import isEmpty from "../../utils/isEmpety";
 
 

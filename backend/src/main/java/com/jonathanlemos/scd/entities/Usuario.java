@@ -31,7 +31,7 @@ public class Usuario {
 	private String tipo;
 	
 	@OnDelete(action = OnDeleteAction.CASCADE)
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = false)
 	@JoinColumn(name="usuario_codigo", referencedColumnName = "codigo")
 	private List<Diaria> diaria;
 	
@@ -40,6 +40,7 @@ public class Usuario {
 	}
 	
 	public Usuario(UsuarioDTO usuario) {
+		codigo = usuario.getCodigo();
 		nome = usuario.getNome();
 		matricula = usuario.getMatricula();
 		tipo = usuario.getTipo();

@@ -1,5 +1,4 @@
 import './styles.css';
-import editar from '../../assets/img/editar.svg';
 import EditarBotao from '../../components/EditarBotao';
 
 function ScdCard() {

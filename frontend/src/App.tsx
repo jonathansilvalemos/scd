@@ -10,18 +10,21 @@ import Login from "./pages/Login";
 import Escala from "./pages/Escala";
 import Diaria from "./pages/Diaria";
 import ScdCard from "./components/ScdCard";
-import EditarDiaria from "./pages/EditarDiaria";
-import CadastrarUsuario from "./pages/CadastrarUsuario";
-import CadastrarCidade from "./pages/CadastrarCidade";
-import CadastrarDiaria from "./pages/CadastrarDiaria";
+import EditarDiaria from "./pages/DiariaEditar";
+import CadastrarUsuario from "./pages/UsuarioCadastrar";
+import CadastrarCidade from "./pages/CidadeCadastrar";
+import CadastrarDiaria from "./pages/DiariaCadastrar";
 import Despesas from "./pages/Despesas";
-import EditarCidade from "./pages/EditarCidade";
-import EditarCidadeForm from "./pages/EditarCidadeForm";
-import EditarUsuario from "./pages/EditarUsuario";
-import EditarUsuarioForm from "./pages/EditarUsuarioForm";
+import EditarCidade from "./pages/CidadeListar";
+import EditarCidadeForm from "./pages/CidadeEditar";
+import EditarUsuario from "./pages/UsuarioListar";
+import EditarUsuarioForm from "./pages/UsuarioEditar";
 import SelectCidade from "./components/SelectCidade";
-import ListarEscalas from "./pages/ListarEscalas";
-import MostrarEscala from "./pages/MostrarEscala";
+import ListarEscalas from "./pages/EscalaListar";
+import MostrarEscala from "./pages/EscalaMostrar";
+import DiariaEditar from "./pages/DiariaEditar";
+import DiariaDespesaMostrar from "./pages/DiariaDespesaMostrar";
+import DiariaDeslocamentoMostrar from "./pages/DiariaDeslocamentoMostrar";
 
 function App() {
   return (
@@ -35,12 +38,11 @@ function App() {
           <Route path="/usuario">
             <Route path="login" element={<Login />} />
             <Route path="validarsenha" element={<Login />} />
-            <Route path="diaria/:cod/:mat/:tip" element={<Diaria />} />
             <Route path="cadastrarusuario/:cod/:mat/:tip" element={<CadastrarUsuario />} />
             <Route path="editarusuario/:cod/:mat/:tip" element={<EditarUsuario />} />
             <Route path="editar/:cod/:mat/:tip/:id" element={<EditarUsuarioForm />} />
             <Route path="excluir/:cod/:mat/:tip/:codigo" element={<EditarUsuario />} />
-            <Route path="cadastrardiaria/:cod/:mat/:tip" element={<CadastrarDiaria />} />
+            
           </Route>
 
           <Route path="/cidade">
@@ -54,6 +56,15 @@ function App() {
             <Route path="cadastrar/:cod/:mat/:tip" element={<Escala />} />
             <Route path="listar/:cod/:mat/:tip" element={<ListarEscalas />} />
             <Route path="listar/mostrar/:cod/:mat/:tip/:id" element={<MostrarEscala />} />
+          </Route>
+
+          <Route path="/diaria">
+            <Route path=":cod/:mat/:tip" element={<Diaria />} />
+            <Route path="cadastrar/:cod/:mat/:tip" element={<CadastrarDiaria />} />
+            <Route path="listar/:cod/:mat/:tip" element={<ListarEscalas />} />
+            <Route path="editar/:cod/:mat/:tip/:id" element={<DiariaEditar />} />
+            <Route path="listar/mostrardespesa/:cod/:mat/:tip/:id" element={<DiariaDespesaMostrar />} />
+            <Route path="listar/mostrardeslocamento/:cod/:mat/:tip/:id" element={<DiariaDeslocamentoMostrar />} />
           </Route>
 
           <Route path="/despesas/:cod/:mat/:tip" element={<Despesas />} />
