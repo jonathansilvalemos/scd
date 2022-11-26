@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +41,7 @@ public class DiariaController {
 		return diariaService.findById(id);
 	}
 
-	@PostMapping(consumes = "multipart/form-data")
+	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<DiariaDTO> cadastrarEscala(
 			@RequestParam("dataviagem") String dataViagem,
 			@RequestParam("cidadeviagem") String cidadeViagem,
