@@ -47,7 +47,8 @@ function Diaria() {
         axios.get(`${BASE_URL}/diaria/usuario?user=${cod}&mindate=${dataMinima}&maxdate=${dataMaxima}&size=5&page=${pageNumber}&sort=id`)
             .then(response => {
                 const data = response.data as DiariaPage;
-                setPage(data);
+                setPage(data);     
+                console.log(page.content.length);           
             })
             .catch((err) => {
                 alert('Erro ao carregar Usuários' + err);

@@ -1,6 +1,8 @@
 package com.jonathanlemos.scd.services;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,31 @@ public class DiariaService {
 		return new DiariaDTO(diaria.get());
 	}
 	
+	/*public Page<DiariaDTO> findDespesaById(Long id, String dataMinima, String dataMaxima, Pageable pageable) {
+		LocalDate minDate = LocalDate.parse(dataMinima);
+		LocalDate maxDate = LocalDate.parse(dataMaxima);
+		
+		Page<Diaria> diaria = diariaRepository.findDespesaById(id, minDate, maxDate, pageable);
+		if (diaria.isEmpty()) {
+			return null;
+		}
+		Page<DiariaDTO> dto = diaria.map(x -> new DiariaDTO(x)); 
+		return dto;
+	}*/
+	
+	public List<DiariaDTO> findDespesaById(Long id, String dataMinima, String dataMaxima) {
+		LocalDate minDate = LocalDate.parse(dataMinima);
+		LocalDate maxDate = LocalDate.parse(dataMaxima);
+		
+		List<Diaria> diaria = diariaRepository.findDespesaById(id, minDate, maxDate);
+		if (diaria == null) {
+			return null;
+		}
+		List<DiariaDTO> dto = new ArrayList<DiariaDTO>();
+		diaria.forEach(x -> dto.add(new DiariaDTO(x))); 
+		return dto;
+	}
+	
 	public DiariaDTO cadastrarDiaria(DiariaDTO diaria) {
 		Diaria novaDiaria = new Diaria(diaria);
 		novaDiaria = diariaRepository.save(novaDiaria);
@@ -43,5 +70,5 @@ public class DiariaService {
 		Page<Diaria> diariaPorUsuario = diariaRepository.diariaPorUsuario(id, minDate, maxDate, pageable);
 		Page<DiariaDTO> page = diariaPorUsuario.map(x -> new DiariaDTO(x));
 		return page;
-	}
+	}	
 }

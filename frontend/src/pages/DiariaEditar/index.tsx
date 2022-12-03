@@ -60,10 +60,7 @@ function DiariaEditar() {
                 alert('Erro ao carregar Usuários' + err);
             });
     }, [id])
-    function abrir(arquivo: File) {
-
-    }
-
+   
     return (
         <div>
             <Header />

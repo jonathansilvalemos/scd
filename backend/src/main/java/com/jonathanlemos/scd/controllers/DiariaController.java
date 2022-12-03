@@ -2,6 +2,7 @@ package com.jonathanlemos.scd.controllers;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,6 +41,23 @@ public class DiariaController {
 	public DiariaDTO findById(@PathVariable Long id) {
 		return diariaService.findById(id);
 	}
+	
+	/*@GetMapping(value = "/despesa")
+	public Page<DiariaDTO> findDespesaById(@RequestParam("user") Long id,
+			@RequestParam("mindate") String dataMinima,
+			@RequestParam("maxdate") String dataMaxima,
+			Pageable pageable) {
+		return diariaService.findDespesaById(id, dataMinima, dataMaxima, pageable);
+	}*/
+	
+	@GetMapping(value = "/despesa")
+	public List<DiariaDTO> findDespesaById(@RequestParam("user") Long id,
+			@RequestParam("mindate") String dataMinima,
+			@RequestParam("maxdate") String dataMaxima) {
+		return diariaService.findDespesaById(id, dataMinima, dataMaxima);
+	}
+	
+	
 
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<DiariaDTO> cadastrarEscala(
@@ -47,7 +65,8 @@ public class DiariaController {
 			@RequestParam("cidadeviagem") String cidadeViagem,
 			@RequestParam("valordiariaviagem") Double valorDiariaViagem,
 			@RequestParam("valorgastoviagem") Double valorGastoViagem,
-			@RequestParam("portariaviagem") int portariaViagem, @RequestParam("statusviagem") int statusViagem,
+			@RequestParam("portariaviagem") int portariaViagem, 
+			@RequestParam("statusviagem") int statusViagem,
 			@RequestPart("deslocamentoviagem") MultipartFile deslocamentoViagem,
 			@RequestPart("despesaviagem") MultipartFile despesaViagem,
 			@RequestParam("usuarioviagem") Long usuarioViagem) throws IOException {
@@ -79,4 +98,5 @@ public class DiariaController {
 		return diariaService.diariaPorUsuario(id, dataMinima, dataMaxima, pageable);
 		
 	}
+	
 }
