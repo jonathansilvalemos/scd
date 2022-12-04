@@ -8,7 +8,7 @@ import './style.css';
 function SelectCidade() {
     const [cidade, setCidade] = useState<Cidade[]>([]);
     const [valor, setValor] = useState(77);
-    var v: number;
+    
 
     useEffect(() => {
         

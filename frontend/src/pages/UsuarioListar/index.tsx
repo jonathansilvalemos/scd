@@ -1,7 +1,5 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { Link, useParams } from 'react-router-dom';
-import DatePicker, { registerLocale } from "react-datepicker";
-import ptBR from 'date-fns/locale/pt-BR';
+import { useParams } from 'react-router-dom';
 import EditarBotao from "../../components/EditarBotao";
 import ExcluirBotao from "../../components/ExcluirBotao";
 import { useEffect, useState } from "react";
@@ -12,23 +10,17 @@ import { BASE_URL } from "../../utils/requests";
 import { Usuario, UsuarioPage } from "../../types/usuario";
 import Pagination from "../../components/Pagination";
 
-
-
-registerLocale('pt-br', ptBR);
-
 type Props = {
     u: Usuario;
 }
 
-function EditarUsuario() {
+function UsuarioListar() {
 
-    let newPageTitle = 'SCD - Editar Usuario';
+    let newPageTitle = 'SCD - Listar Usuários';
     document.title = newPageTitle;
 
     const { cod, mat, tip } = useParams();
-    const [usuario, setUsuario] = useState<Usuario[]>([]);
-
-
+   
     const [page, setPage] = useState<UsuarioPage>({
         content: [],
         last: true,
@@ -132,4 +124,4 @@ function EditarUsuario() {
     );
 }
 
-export default EditarUsuario;
+export default UsuarioListar;

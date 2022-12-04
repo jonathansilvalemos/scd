@@ -7,7 +7,7 @@ import { BASE_URL } from '../../utils/requests';
 import isEmpty from '../../utils/isEmpety';
 import NavBarAdmin from '../../components/NavBarAdmin';
 
-function EditarCidadeForm() {
+function CidadeEditar() {
 
     let newPageTitle = 'SCD - Editar Cidade';
     document.title = newPageTitle;
@@ -109,4 +109,4 @@ function EditarCidadeForm() {
     );
 }
 
-export default EditarCidadeForm;
+export default CidadeEditar;

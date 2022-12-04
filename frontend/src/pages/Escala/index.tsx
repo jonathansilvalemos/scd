@@ -1,18 +1,15 @@
 import './styles.css';
 import "react-datepicker/dist/react-datepicker.css";
-import { Link, useParams } from 'react-router-dom';
-import React, { useState, Component } from "react";
+import React, { useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import ptBR from 'date-fns/locale/pt-BR';
 import Header from '../../components/Header';
 import NavBarAdmin from '../../components/NavBarAdmin';
-import axios, { AxiosRequestConfig } from 'axios';
 import isEmpty from '../../utils/isEmpety';
 import { BASE_URL } from '../../utils/requests';
+import axios from 'axios';
 
 registerLocale('pt-br', ptBR);
-
-//id s3: AKIAW5NT6UCC4CIR7QTG chave: rBoKNyTSWaL+jYq0t0q6iIPUzXsfwy7hhTvsx0W1
 
 function Escala() {
     let newPageTitle = 'SCD - Cadastrar Escala';
@@ -20,12 +17,9 @@ function Escala() {
 
     const data = new Date();
 
-    const { cod, mat, tip } = useParams();
-
     const [dataEscala, setDataEscala] = useState(data);
     const [arquivo, setArquivo] = useState<File>();
-    const [dado, setDado] = useState('');
-    
+        
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileList = e.target.files;
         if (!fileList) return;

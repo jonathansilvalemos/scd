@@ -1,7 +1,5 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { Link, useParams } from 'react-router-dom';
-import DatePicker, { registerLocale } from "react-datepicker";
-import ptBR from 'date-fns/locale/pt-BR';
+import { useParams } from 'react-router-dom';
 import EditarBotao from "../../components/EditarBotao";
 import { useEffect, useState } from "react";
 import Header from "../../components/Header";
@@ -10,10 +8,9 @@ import axios from "axios";
 import { BASE_URL } from "../../utils/requests";
 import { Cidade } from "../../types/cidade";
 
-registerLocale('pt-br', ptBR);
 
-function EditarCidade() {
-    var formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' }
+function CidadeListar() {
+    let formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' }
 
     let newPageTitle = 'SCD - Editar Cidade';
     document.title = newPageTitle;
@@ -83,4 +80,4 @@ function EditarCidade() {
     );
 }
 
-export default EditarCidade;
+export default CidadeListar;

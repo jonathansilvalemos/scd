@@ -24,14 +24,13 @@ type Props2 = {
     imagem: Blob;
 }
 
-function ListarEscalas() {
+function EscalaListar() {
 
     let newPageTitle = 'SCD - Listar Escalas';
     document.title = newPageTitle;
 
     const data = new Date();
     const { cod, mat, tip } = useParams();
-    //const [escala, setEscala] = useState<Escala[]>([]);
     const [imagem, setImagem] = useState<Blob>()
     const [arquivo, setArquivo] = useState<any>();
     const [dataEscala, setDataEscala] = useState(data);
@@ -101,6 +100,7 @@ function ListarEscalas() {
         setPageNumber(newPageNumber);
     }
 
+    
     return (
         <>
             <Header />
@@ -154,9 +154,19 @@ function ListarEscalas() {
                                                     </Link>
                                                 </td>
                                                 <td>
+                                                    
                                                     <div className="scd-red-btn-container">
-                                                        <a href={"/escala/excluir/" + `${cod}/${mat}/${tip}/${u.id}`}><ExcluirBotao /></a>
+                                                        <a href={"/escala/excluir/" + `${cod}/${mat}/${tip}/${u.id}`} 
+                                                        onClick={() =>  {
+                                                            if(tip === 'admin'){
+                                                                alert('Excluído com sucesso');        
+                                                            } else {
+                                                                alert('Você não tem permissão para excluir!');
+                                                                window.location.href = `/escala/listar/${cod}/${mat}/${tip}`;
+                                                            }
+                                                            } }><ExcluirBotao /></a>
                                                     </div>
+                                                    
                                                 </td>
 
                                             </tr>
@@ -173,4 +183,4 @@ function ListarEscalas() {
     );
 }
 
-export default ListarEscalas;
+export default EscalaListar;

@@ -6,7 +6,7 @@ import { BASE_URL } from "../../utils/requests";
 import Header from "../../components/Header";
 import './style.css';
 
-function MostrarEscala() {
+function EscalaMostrar() {
     let newPageTitle = 'SCD - Abertura de Escala';
     document.title = newPageTitle;
 
@@ -35,7 +35,7 @@ function MostrarEscala() {
 
 
 
-    const { cod, mat, tip, id } = useParams();
+    const { id } = useParams();
     return (
         <>
             <Header />
@@ -53,4 +53,4 @@ function MostrarEscala() {
         </>
     )
 }
-export default MostrarEscala;
+export default EscalaMostrar;

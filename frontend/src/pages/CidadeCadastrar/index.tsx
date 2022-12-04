@@ -7,7 +7,7 @@ import { BASE_URL } from '../../utils/requests';
 import isEmpty from '../../utils/isEmpety';
 import NavBarAdmin from '../../components/NavBarAdmin';
 
-function CadastrarCidade() {
+function CidadeCadastrar() {
 
     let newPageTitle = 'SCD - Cadastro de Cidade';
     document.title = newPageTitle;
@@ -81,4 +81,4 @@ function CadastrarCidade() {
     );
 }
 
-export default CadastrarCidade;
+export default CidadeCadastrar;

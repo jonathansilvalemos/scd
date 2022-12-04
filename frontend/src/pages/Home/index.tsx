@@ -1,7 +1,6 @@
 import '../../init.js';
 import Header2 from '../../components/Header2';
 import { Link } from 'react-router-dom';
-//import '../../next.config.js';
 
 function Home() {
     let newPageTitle = 'SCD - Bem Vindo';

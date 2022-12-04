@@ -7,7 +7,6 @@ import Header from "../../components/Header";
 import NavBarAdmin from "../../components/NavBarAdmin";
 import axios, { AxiosRequestConfig } from "axios";
 import { BASE_URL } from "../../utils/requests";
-import { DiariaPage } from "../../types/diaria";
 
 registerLocale('pt-br', ptBR);
 
@@ -15,6 +14,7 @@ function Despesas() {
 
     let newPageTitle = 'SCD - Despesas';
     document.title = newPageTitle;
+    let formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' }
 
     let totalDiaria: number;
     let valorRecebido: number;
@@ -24,7 +24,7 @@ function Despesas() {
     let descontoTransporte: number;
     let saldoDiaria: number;
 
-    const { cod, mat, tip, id } = useParams();
+    const { cod } = useParams();
     const min = new Date(new Date().setDate(new Date().getDate() - 30));
     const max = new Date();
 
@@ -36,8 +36,8 @@ function Despesas() {
     const [diariaSaldo, setDiariaSaldo] = useState(0);
     const [diariaRecebido, setDiariaRecebido] = useState(0);
     const [diariaReceber, setDiariaReceber] = useState(0);
-    const [alimentacaoDesconto, setAlimentacaoDesconto] = useState<number>(0);
-    const [transporteDesconto, setTransporteDesconto] = useState<number>(0);
+    const [alimentacaoDesconto, setAlimentacaoDesconto] = useState(0);
+    const [transporteDesconto, setTransporteDesconto] = useState(0);
     
     async function recebeDados() {
         const dataMinima = minDate.toISOString().slice(0, 10);
@@ -52,13 +52,12 @@ function Despesas() {
         axios(config).then(response => {
             console.log(response.data);
 
-            const data = response.data as DiariaPage;
-    
+               
             response.data.forEach(u => {
                 totalDiaria = u.valorDiaria + totalDiaria;
                 console.log("Valor diaria dento: " + u.valorDiaria);
                 console.log("Valor gasto dentro: " + u.valorGasto);
-
+           
                 if (u.status == 1) {
                     valorRecebido = valorRecebido + u.valorDiaria;
                 } else {
@@ -74,8 +73,8 @@ function Despesas() {
             setDiariaSaldo(saldoDiaria);
             setDiariaRecebido(valorRecebido);
             setDiariaReceber(valorReceber);
-            setAlimentacaoDesconto(parseFloat(descontoAlimentacao).toFixed(2));
-            setTransporteDesconto(parseFloat(descontoTransporte).toFixed(2));
+            setAlimentacaoDesconto(descontoAlimentacao);
+            setTransporteDesconto(descontoTransporte);
         }).catch((err) => {
             alert('Erro ao carregar Usuários' + err);
         });
@@ -130,36 +129,36 @@ function Despesas() {
 
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Total de Diárias:</label>
-                                            <input className="scd-form-control" type="text" value={`R$ ${diariaTotal}`} disabled />
+                                            <input className="scd-form-control" type="text" value={`${diariaTotal.toLocaleString('pt-br', formato)}`} disabled />
                                         </div>
                                     </div>
 
                                     <div className="scd-container-valores mb-3">
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Valor Recebido:</label>
-                                            <input className="scd-form-control" type="text" value={`R$ ${diariaRecebido}`} disabled />
+                                            <input className="scd-form-control" type="text" value={`${diariaRecebido.toLocaleString('pt-br', formato)}`} disabled />
                                         </div>
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Valor a Receber:</label>
-                                            <input className="scd-form-control" type="text" value={`R$ ${diariaReceber}`} disabled />
+                                            <input className="scd-form-control" type="text" value={`${diariaReceber.toLocaleString('pt-br', formato)}`} disabled />
                                         </div>
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Valor Gasto:</label>
-                                            <input className="scd-form-control" type="text" value={`R$ ${gastoValor}`} disabled />
+                                            <input className="scd-form-control" type="text" value={`${gastoValor.toLocaleString('pt-br', formato)}`} disabled />
                                         </div>
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Saldo de diárias:</label>
-                                            <input className="scd-form-control" type="text" value={`R$ ${diariaSaldo}`} disabled />
+                                            <input className="scd-form-control" type="text" value={`${diariaSaldo.toLocaleString('pt-br', formato)}`} disabled />
                                         </div>
                                     </div>
                                     <div className="scd-container-valores mt-2">
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Desconto no Vale Alimentação:</label>
-                                            <input className="scd-form-control" type="text" value={`R$ ${alimentacaoDesconto}`} disabled />
+                                            <input className="scd-form-control" type="text" value={`${alimentacaoDesconto.toLocaleString('pt-br', formato)}`} disabled />
                                         </div>
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Desconto no Vale Transporte:</label>
-                                            <input className="scd-form-control" type="text" value={`R$ ${transporteDesconto}`} disabled />
+                                            <input className="scd-form-control" type="text" value={`${transporteDesconto.toLocaleString('pt-br', formato)}`} disabled />
                                         </div>
                                     </div>
                                 </div>

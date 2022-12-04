@@ -12,7 +12,7 @@ function DiariaDespesaMostrar() {
 
 
     const [imagem, setImagem] = useState<File>();
-    
+    const { id } = useParams();
     useEffect(() => {
         async function listarEscalas() {
             const config: AxiosRequestConfig = {
@@ -33,7 +33,7 @@ function DiariaDespesaMostrar() {
 
 
 
-    const { cod, mat, tip, id } = useParams();
+    
     return (
         <>
             <Header />

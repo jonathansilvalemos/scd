@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -72,7 +71,7 @@ function NavBarAdmin() {
             <Nav className="me-auto">
 
               <NavDropdown title="Escala" id="collasible-nav-dropdown">
-                <NavDropdown.Item href={"/escala/cadastrar/" + `${cod}/${mat}/${tip}`}>Cadastrar</NavDropdown.Item>
+                <NavDropdown.Item href={"/escala/cadastrar/" + `${cod}/${mat}/${tip}`} hidden>Cadastrar</NavDropdown.Item>
                 <NavDropdown.Item href={"/escala/listar/" + `${cod}/${mat}/${tip}`}>Listar</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">

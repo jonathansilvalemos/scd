@@ -63,7 +63,7 @@ public class DiariaController {
 	public ResponseEntity<DiariaDTO> cadastrarEscala(
 			@RequestParam("dataviagem") String dataViagem,
 			@RequestParam("cidadeviagem") String cidadeViagem,
-			@RequestParam("valordiariaviagem") Double valorDiariaViagem,
+			@RequestParam("valordiariaviagem") String valorDiariaViagem,
 			@RequestParam("valorgastoviagem") Double valorGastoViagem,
 			@RequestParam("portariaviagem") int portariaViagem, 
 			@RequestParam("statusviagem") int statusViagem,
@@ -74,7 +74,7 @@ public class DiariaController {
 		LocalDate dataNova = LocalDate.parse(dataViagem);
 		diaria.setData(dataNova.plusDays(1));
 		diaria.setCidade(cidadeViagem);
-		diaria.setValorDiaria(valorDiariaViagem);
+		diaria.setValorDiaria(Double.parseDouble(valorDiariaViagem.substring(3, 5)));
 		diaria.setValorGasto(valorGastoViagem);
 		diaria.setPortaria(portariaViagem);
 		diaria.setStatus(statusViagem);

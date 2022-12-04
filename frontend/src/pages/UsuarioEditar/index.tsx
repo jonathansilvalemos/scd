@@ -1,17 +1,17 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 import Header from '../../components/Header';
 import NavBarAdmin from '../../components/NavBarAdmin';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../../utils/requests';
-import { Usuario, UsuarioPage } from 'types/usuario';
+import { Usuario } from 'types/usuario';
 import isEmpty from '../../utils/isEmpety';
 
 
 
-function EditarUsuarioForm() {
+function UsuarioEditar() {
 
-    let newPageTitle = 'SCD - Cadastro de Usuário';
+    let newPageTitle = 'SCD - Editar Usuário';
     document.title = newPageTitle;
 
     const [usuario, setUsuario] = useState<Usuario>();
@@ -145,4 +145,4 @@ function EditarUsuarioForm() {
     )
 }
 
-export default EditarUsuarioForm;
+export default UsuarioEditar;

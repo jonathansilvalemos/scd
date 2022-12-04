@@ -1,20 +1,18 @@
-import { Link, useParams } from 'react-router-dom';
-import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
+import React, { useState } from "react";
 import Header from '../../components/Header';
 import NavBarAdmin from '../../components/NavBarAdmin';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../../utils/requests';
-import { Usuario, UsuarioPage } from 'types/usuario';
 import isEmpty from '../../utils/isEmpety';
 
 
 
-function CadastrarUsuario() {
+function UsuarioCadastrar() {
 
     let newPageTitle = 'SCD - Cadastro de Usuário';
     document.title = newPageTitle;
 
-    const [usuario, setUsuario] = useState<Usuario>();
     const { cod, mat, tip } = useParams();
     const [campos, setCampos] = useState({
         nome: '',
@@ -122,4 +120,4 @@ function CadastrarUsuario() {
     )
 }
 
-export default CadastrarUsuario;
+export default UsuarioCadastrar;

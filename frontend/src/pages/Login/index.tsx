@@ -2,7 +2,7 @@ import Header2 from '../../components/Header2';
 import './styles.css';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../../utils/requests';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Usuario } from 'types/usuario';
 
 
@@ -13,8 +13,7 @@ function Login() {
 
     const [mat, setMat] = useState("");
     const [pass, setPass] = useState("");
-    const [usuario, setUsuario] = useState<Usuario>();
-
+    
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const config: AxiosRequestConfig = {

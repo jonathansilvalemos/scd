@@ -10,7 +10,7 @@ function DiariaDeslocamentoMostrar() {
     let newPageTitle = 'SCD - Abertura de Deslocamento';
     document.title = newPageTitle;
 
-
+    const { id } = useParams();
     const [imagem, setImagem] = useState<File>();
     
     useEffect(() => {
@@ -33,7 +33,7 @@ function DiariaDeslocamentoMostrar() {
 
 
 
-    const { cod, mat, tip, id } = useParams();
+    
     return (
         <>
             <Header />

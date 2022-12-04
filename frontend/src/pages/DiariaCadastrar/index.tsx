@@ -1,5 +1,5 @@
 import "react-datepicker/dist/react-datepicker.css";
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import DatePicker, { registerLocale } from "react-datepicker";
 import ptBR from 'date-fns/locale/pt-BR';
 import { useEffect, useState } from "react";
@@ -14,23 +14,23 @@ import { Cidade } from "../../types/cidade";
 
 registerLocale('pt-br', ptBR);
 
-function CadastrarDiaria() {
+function DiariaCadastrar() {
 
     let newPageTitle = 'SCD - Cadastrar diária';
     document.title = newPageTitle;
 
+    let formato = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' }
     const dataAtual = new Date();
-    const { cod, mat, tip } = useParams();
+    const { cod } = useParams();
     const [dataViagem, setDataViagem] = useState(dataAtual);
     const [despesa, setDespesa] = useState<File>();
     const [deslocamento, setDeslocamento] = useState<File>();
     const [cidade, setCidade] = useState<Cidade[]>([]);
-    const [cidadeViagem, setCidadeViagem] = useState('');
     const [valor, setValor] = useState(77);
-    var v: number;
-    var select = document.querySelector('select');
-    var option = select?.children[select.selectedIndex];
-    var texto = option?.textContent;
+    let v: number;
+    let select = document.querySelector('select');
+    let option = select?.children[select.selectedIndex];
+    let texto = option?.textContent;
 
 
     useEffect(() => {
@@ -76,7 +76,7 @@ function CadastrarDiaria() {
         const portariaViagem = (event.target as any).portaria.value;
         const status = (event.target as any).status.value;
         const usuario = cod;
-
+        
         if (deslocamento && despesa && texto && usuario) {
             formData.append('dataviagem', dataEscalada);
             formData.append('cidadeviagem', texto);
@@ -96,41 +96,10 @@ function CadastrarDiaria() {
         console.log("Deslocamento: " + deslocamento);
         console.log("Despesa: " + despesa);
         console.log("Código usuário: " + cod);
-        
-                
-        /*const config: AxiosRequestConfig = {
-            baseURL: BASE_URL,
-            method: 'POST',
-            url: '/diaria',
-            data: {
-                data: dataEscalada,
-                cidade: texto,
-                valorDiaria: valorDiaria,
-                valorGasto: valorGastoDiaria,
-                portaria: portariaViagem,
-                status: status,
-                usuario: formData
-            }
-        }
-        
-        await axios(formData,config).then(response => {
-            
-            console.log(response.data);
-            if(isEmpty(response.data)){
-                alert("Diária já cadastrado!");
-            } else {
-                alert("Diária cadastrado com sucesso!");
-                window.location.href=`/usuario/cadastrarusuario/${cod}/${mat}/${tip}`;
-            }
-
-        }).catch((err) => {
-            console.log("Erro: " + err);
-        });*/
-        
-
+              
         await axios.post(`${BASE_URL}/diaria`, formData)
             .then(response => {
-                console.log(response.data);
+               console.log(response.data);
                 if (isEmpty(response.data)) {
                     alert("Diária já cadastrada!");
                 } else {
@@ -141,8 +110,6 @@ function CadastrarDiaria() {
                 console.log("Erro: " + err);
             });
     }
-
-
 
     return (
         <div>
@@ -186,7 +153,7 @@ function CadastrarDiaria() {
                                         <div className="scd-container-valores">
 
                                             <div className="scd-form-container-cadastro-select">
-                                                <input className="scd-form-control-valor-select" name="valorDiaria" type="text" value={`${valor}`} disabled />
+                                                <input className="scd-form-control-valor-select" name="valorDiaria" type="text" value={`${valor.toLocaleString('pt-br', formato)}`} disabled />
                                             </div>
 
                                         </div>
@@ -248,4 +215,4 @@ function CadastrarDiaria() {
     );
 }
 
-export default CadastrarDiaria;
+export default DiariaCadastrar;
