@@ -3,7 +3,7 @@ import { Usuario } from "./usuario";
 export type Diaria = {
     id: number;
 	data: Date;
-	cidade: String;
+	cidade: string;
 	valorDiaria: number;
 	valorGasto: number;
 	portaria: number;

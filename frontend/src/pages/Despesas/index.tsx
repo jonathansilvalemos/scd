@@ -7,6 +7,7 @@ import Header from "../../components/Header";
 import NavBarAdmin from "../../components/NavBarAdmin";
 import axios, { AxiosRequestConfig } from "axios";
 import { BASE_URL } from "../../utils/requests";
+import { Diaria } from "../../types/diaria";
 
 registerLocale('pt-br', ptBR);
 
@@ -38,7 +39,8 @@ function Despesas() {
     const [diariaReceber, setDiariaReceber] = useState(0);
     const [alimentacaoDesconto, setAlimentacaoDesconto] = useState(0);
     const [transporteDesconto, setTransporteDesconto] = useState(0);
-    
+    const [dados, setDados] = useState<Diaria[]>([]);
+
     async function recebeDados() {
         const dataMinima = minDate.toISOString().slice(0, 10);
         const dataMaxima = maxDate.toISOString().slice(0, 10);
@@ -51,9 +53,10 @@ function Despesas() {
 
         axios(config).then(response => {
             console.log(response.data);
-
+            const data = response.data as Diaria[];
+            setDados(data);
                
-            response.data.forEach(u => {
+                dados.forEach(u => {
                 totalDiaria = u.valorDiaria + totalDiaria;
                 console.log("Valor diaria dento: " + u.valorDiaria);
                 console.log("Valor gasto dentro: " + u.valorGasto);
