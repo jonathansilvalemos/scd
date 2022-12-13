@@ -25,9 +25,7 @@ public class EscalaController{
 	private EscalaService escalaService;
 	
 	@PostMapping
-	public ResponseEntity<EscalaDTO> cadastrarEscala(@RequestParam("diaescala") String data,
-													 @RequestParam("arq") MultipartFile file)
-												     throws Exception{
+	public ResponseEntity<EscalaDTO> cadastrarEscala(@RequestParam("diaescala") String data, @RequestParam("arq") MultipartFile file) throws Exception{
 		EscalaDTO escala = new EscalaDTO();
 		LocalDate dataNova = LocalDate.parse(data);
 		escala.setData(dataNova.plusDays(1));
