@@ -26,12 +26,16 @@ public class EscalaController{
 	
 	@PostMapping
 	public ResponseEntity<EscalaDTO> cadastrarEscala(@RequestParam("diaescala") String data,
-			@RequestParam("arq") MultipartFile file) throws Exception{
+													 @RequestParam("arq") MultipartFile file)
+												     throws Exception{
 		EscalaDTO escala = new EscalaDTO();
 		LocalDate dataNova = LocalDate.parse(data);
 		escala.setData(dataNova.plusDays(1));
 		escala.setEscala(file.getBytes());
 		EscalaDTO result = escalaService.cadastrarEscala(escala);
+		if (result == null) {
+			return ResponseEntity.status(404).body(result);
+		}
 		return ResponseEntity.ok(result);
 	}
 	

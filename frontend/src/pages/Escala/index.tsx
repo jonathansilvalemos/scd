@@ -33,16 +33,14 @@ function Escala() {
         const formData = new FormData();
      
         if (arquivo) {
-            console.log("Data da escala: " + dataEscala);
             formData.append('diaescala', dataEscalada);
             formData.append('arq', arquivo, arquivo.name);
         }
 
         await axios.post(`${BASE_URL}/escala`, formData)
             .then(response => {
-                console.log(response.data);
                 if (isEmpty(response.data)) {
-                    alert("Escala já cadastrada!");
+                    alert("Não foi possível cadastrar escala! Tente Novamente!");
                 } else {
                     alert("Escala cadastrada com sucesso!");
                 }
