@@ -7,8 +7,6 @@ import { BASE_URL } from '../../utils/requests';
 import { Usuario } from 'types/usuario';
 import isEmpty from '../../utils/isEmpety';
 
-
-
 function UsuarioEditar() {
 
     let newPageTitle = 'SCD - Editar Usuário';
@@ -18,21 +16,21 @@ function UsuarioEditar() {
     const { cod, mat, tip, id } = useParams();
 
     useEffect(() => {
+
         async function atualizaUsuario() {
+
             const config: AxiosRequestConfig = {
                 baseURL: BASE_URL,
                 method: 'GET',
                 url: `/usuario/${id}`
             }
 
-
-           await axios(config).then(response => {
+            await axios(config).then(response => {
                 if (isEmpty(response.data)) {
                     alert('Problemas ao atualizar')
                 } else {
                     setUsuario(response.data);
                 }
-
             }).catch((err) => {
                 console.log("Erro: " + err);
             });
@@ -41,7 +39,9 @@ function UsuarioEditar() {
     }, [])
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
         event.preventDefault();
+
         const nome = (event.target as any).nome.value;
         const matricula = (event.target as any).matricula.value;
         const senha = (event.target as any).senha.value;
@@ -61,23 +61,19 @@ function UsuarioEditar() {
         }
 
         axios(config).then(response => {
-            window.location.href=`/usuario/editarusuario/${cod}/${mat}/${tip}`;
+            window.location.href = `/usuario/editarusuario/${cod}/${mat}/${tip}`;
         }).catch((err) => {
             console.log("Erro: " + err);
         });
     }
 
     return (
-
         <>
-
             <Header />
             <NavBarAdmin />
-
             <main>
                 <section id="diarias">
                     <div className="scd-container">
-
                         <div className="scd-card-login">
                             <h2 className="scd-diarias-titulo">Editar Usuário</h2>
                             <form onSubmit={handleSubmit}>
@@ -132,9 +128,7 @@ function UsuarioEditar() {
                                     </div>
                                 </div>
                                 <div className="scd-btn-login">
-
                                     <input type='submit' className='btn-login-form' value="Atualizar" />
-
                                 </div>
                             </form>
                         </div>
@@ -144,5 +138,4 @@ function UsuarioEditar() {
         </>
     )
 }
-
 export default UsuarioEditar;

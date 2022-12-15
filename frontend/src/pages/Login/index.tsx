@@ -3,8 +3,6 @@ import './styles.css';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../../utils/requests';
 import { useState } from 'react';
-import { Usuario } from 'types/usuario';
-
 
 function Login() {
 
@@ -13,9 +11,11 @@ function Login() {
 
     const [mat, setMat] = useState("");
     const [pass, setPass] = useState("");
-    
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
         event.preventDefault();
+
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
             method: 'POST',
@@ -26,7 +26,6 @@ function Login() {
             }
         }
 
-
         await axios(config).then(response => {
             if (response.status === 200) {
                 window.location.href = `/diaria/${response.data.codigo}/${response.data.matricula}/${response.data.tipo}`;
@@ -36,7 +35,6 @@ function Login() {
         }).catch((err) => {
             alert("Erro na autenticação!")
         });
-
     }
 
     return (
@@ -45,7 +43,6 @@ function Login() {
             <main>
                 <section id="diarias">
                     <div className="scd-container">
-
                         <div className="scd-card-login">
                             <h2 className="scd-diarias-titulo">Autenticação</h2>
                             <form onSubmit={handleSubmit}>
@@ -80,5 +77,4 @@ function Login() {
         </div >
     );
 }
-
 export default Login;

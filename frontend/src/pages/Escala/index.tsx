@@ -19,7 +19,7 @@ function Escala() {
 
     const [dataEscala, setDataEscala] = useState(data);
     const [arquivo, setArquivo] = useState<File>();
-        
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileList = e.target.files;
         if (!fileList) return;
@@ -27,11 +27,12 @@ function Escala() {
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
         event.preventDefault();
 
         const dataEscalada = dataEscala.toISOString().slice(0, 10);
         const formData = new FormData();
-     
+
         if (arquivo) {
             formData.append('diaescala', dataEscalada);
             formData.append('arq', arquivo, arquivo.name);
@@ -69,9 +70,7 @@ function Escala() {
                                         className="scd-form-control"
                                         dateFormat="dd/MM/yyyy"
                                     />
-
                                 </div>
-
                                 <div className='mb-3'>
                                     <label htmlFor="arquivo">Adicionar pdf da escala:</label>
                                     <input
@@ -83,11 +82,8 @@ function Escala() {
                                         required
                                         className="form-control-arquivo" />
                                 </div>
-
                                 <div className="scd-btn-login">
-
                                     <input type='submit' className='btn-login-form' value="Cadastrar" />
-
                                 </div>
                             </div>
                         </form>
@@ -96,7 +92,5 @@ function Escala() {
             </main>
         </div>
     );
-
 }
-
 export default Escala;

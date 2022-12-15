@@ -7,19 +7,22 @@ import Header from "../../components/Header";
 import './style.css';
 
 function DiariaDespesaMostrar() {
+
     let newPageTitle = 'SCD - Abertura de Despesa';
     document.title = newPageTitle;
-
 
     const [imagem, setImagem] = useState<File>();
     const { id } = useParams();
     useEffect(() => {
+
         async function listarEscalas() {
+
             const config: AxiosRequestConfig = {
                 baseURL: BASE_URL,
                 method: 'GET',
                 url: `/diaria/${id}`
             }
+
             await axios(config).then(response => {
                 const data = response.data;
                 setImagem(data.compDespesa);                
@@ -28,12 +31,8 @@ function DiariaDespesaMostrar() {
             });
         }
         listarEscalas();
-
     }, [])
 
-
-
-    
     return (
         <>
             <Header />
@@ -41,11 +40,8 @@ function DiariaDespesaMostrar() {
             <main>
                 <section id="diarias">
                     <div className="scd-container-despesa">
-
                         <h2 className="scd-diarias-titulo mb-2">Comprovante de Despesa</h2>
-                        <img src={`data:image/jpg;base64,${imagem}`} alt="Despesa" className="embed-img"/>
-                      
-                        
+                        <img src={`data:image/jpg;base64,${imagem}`} alt="Despesa" className="embed-img"/>                       
                     </div>
                 </section>
             </main>

@@ -10,17 +10,19 @@ function EscalaMostrar() {
     let newPageTitle = 'SCD - Abertura de Escala';
     document.title = newPageTitle;
 
-
     const [imagem, setImagem] = useState<Blob>();
     const [data, setData] = useState(new Date());
 
     useEffect(() => {
+
         async function listarEscalas() {
+
             const config: AxiosRequestConfig = {
                 baseURL: BASE_URL,
                 method: 'GET',
                 url: `/escala/${id}`
             }
+
             await axios(config).then(response => {
                 const data = response.data;
                 setImagem(data.escala);
@@ -29,13 +31,13 @@ function EscalaMostrar() {
                 alert('Erro ao carregar Usuários' + err);
             });
         }
+
         listarEscalas();
 
-    }, [])
-
-
+    }, []);
 
     const { id } = useParams();
+
     return (
         <>
             <Header />
@@ -43,10 +45,8 @@ function EscalaMostrar() {
             <main>
                 <section id="diarias">
                     <div className="scd-container-escala">
-
                         <h2 className="scd-diarias-titulo mb-2">Escala de {new Date(data).toLocaleDateString('pt-br')}</h2>
                         <embed src={`data:application/pdf;base64,${imagem}`} className='embed' />
-
                     </div>
                 </section>
             </main>

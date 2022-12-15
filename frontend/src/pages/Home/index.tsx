@@ -3,6 +3,7 @@ import Header2 from '../../components/Header2';
 import { Link } from 'react-router-dom';
 
 function Home() {
+    
     let newPageTitle = 'SCD - Bem Vindo';
     document.title = newPageTitle;
 
@@ -12,7 +13,6 @@ function Home() {
             <main>
                 <section id="diarias">
                     <div className="scd-container">
-
                         <div className='container py-5'>
                             <div className="jumbotron jumbotron-fluid">
                                 <h1 className="display-4">Sistema de Controle de Diárias</h1>

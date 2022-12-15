@@ -36,20 +36,15 @@ function NavBarAdmin() {
 
               <NavDropdown title="Escala" id="collasible-nav-dropdown">
                 <NavDropdown.Item href={"/escala/cadastrar/" + `${cod}/${mat}/${tip}`}>Cadastrar</NavDropdown.Item>
-                <NavDropdown.Item href={"/escala/listar/" + `${cod}/${mat}/${tip}`}>Listar</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Sobre
-                </NavDropdown.Item>
+                <NavDropdown.Item href={"/escala/listar/" + `${cod}/${mat}/${tip}`}>Listar</NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown title="Diária" id="collasible-nav-dropdown">
                 <NavDropdown.Item href={"/diaria/cadastrar/" + `${cod}/${mat}/${tip}`}>Cadastrar</NavDropdown.Item>
-                <NavDropdown.Item href={"/diaria/" + `${cod}/${mat}/${tip}`}>Pesquisar</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Sobre
-                </NavDropdown.Item>
+                <NavDropdown.Item href={"/diaria/" + `${cod}/${mat}/${tip}`}>Pesquisar</NavDropdown.Item>
+                                
               </NavDropdown>
 
             </Nav>
@@ -73,19 +68,13 @@ function NavBarAdmin() {
               <NavDropdown title="Escala" id="collasible-nav-dropdown">
                 <NavDropdown.Item href={"/escala/cadastrar/" + `${cod}/${mat}/${tip}`} hidden>Cadastrar</NavDropdown.Item>
                 <NavDropdown.Item href={"/escala/listar/" + `${cod}/${mat}/${tip}`}>Listar</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Sobre
-                </NavDropdown.Item>
               </NavDropdown>
 
               <NavDropdown title="Diária" id="collasible-nav-dropdown">
                 <NavDropdown.Item href={"/usuario/cadastrardiaria/" + `${cod}/${mat}/${tip}`}>Cadastrar</NavDropdown.Item>
-                <NavDropdown.Item href={"/usuario/diaria/" + `${cod}/${mat}/${tip}`}>Pesquisar</NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">
-                  Sobre
-                </NavDropdown.Item>
+                <NavDropdown.Item href={"/usuario/diaria/" + `${cod}/${mat}/${tip}`}>Pesquisar</NavDropdown.Item>
+                
               </NavDropdown>
 
             </Nav>

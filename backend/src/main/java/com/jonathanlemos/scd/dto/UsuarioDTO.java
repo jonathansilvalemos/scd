@@ -10,14 +10,7 @@ public class UsuarioDTO {
 	private String senha;
 	private String tipo;
 	
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
+	
 	public UsuarioDTO() {
 		
 	}
@@ -37,6 +30,15 @@ public class UsuarioDTO {
 		senha = usuario.getSenha();
 		tipo = usuario.getTipo();
 	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	
 	public Long getCodigo() {
 		return codigo;

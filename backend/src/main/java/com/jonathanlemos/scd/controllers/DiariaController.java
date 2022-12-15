@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -42,13 +43,6 @@ public class DiariaController {
 		return diariaService.findById(id);
 	}
 	
-	/*@GetMapping(value = "/despesa")
-	public Page<DiariaDTO> findDespesaById(@RequestParam("user") Long id,
-			@RequestParam("mindate") String dataMinima,
-			@RequestParam("maxdate") String dataMaxima,
-			Pageable pageable) {
-		return diariaService.findDespesaById(id, dataMinima, dataMaxima, pageable);
-	}*/
 	
 	@GetMapping(value = "/despesa")
 	public List<DiariaDTO> findDespesaById(@RequestParam("user") Long id,
@@ -60,7 +54,7 @@ public class DiariaController {
 	
 
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public ResponseEntity<DiariaDTO> cadastrarEscala(
+	public ResponseEntity<DiariaDTO> cadastrarDiaria(
 			@RequestParam("dataviagem") String dataViagem,
 			@RequestParam("cidadeviagem") String cidadeViagem,
 			@RequestParam("valordiariaviagem") String valorDiariaViagem,
@@ -73,6 +67,39 @@ public class DiariaController {
 		DiariaDTO diaria = new DiariaDTO();
 		LocalDate dataNova = LocalDate.parse(dataViagem);
 		diaria.setData(dataNova.plusDays(1));
+		diaria.setCidade(cidadeViagem);
+		diaria.setValorDiaria(Double.parseDouble(valorDiariaViagem.substring(3, 5)));
+		diaria.setValorGasto(valorGastoViagem);
+		diaria.setPortaria(portariaViagem);
+		diaria.setStatus(statusViagem);
+		diaria.setCompDesloca(deslocamentoViagem.getBytes());
+		diaria.setCompDespesa(despesaViagem.getBytes());
+		UsuarioDTO usuario = usuarioService.findById(usuarioViagem);
+		if (usuario != null) {
+			diaria.setUsuario(usuario);
+		}else {
+			throw new IllegalArgumentException();
+		}
+		DiariaDTO result = diariaService.cadastrarDiaria(diaria);
+		return ResponseEntity.ok(result);
+	}
+	
+	@PutMapping(value = "/atualizar/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public ResponseEntity<DiariaDTO> atualizarDiaria(
+			@PathVariable Long id,
+			@RequestParam("dataviagem") String dataViagem,
+			@RequestParam("cidadeviagem") String cidadeViagem,
+			@RequestParam("valordiariaviagem") String valorDiariaViagem,
+			@RequestParam("valorgastoviagem") Double valorGastoViagem,
+			@RequestParam("portariaviagem") int portariaViagem, 
+			@RequestParam("statusviagem") int statusViagem,
+			@RequestPart("deslocamentoviagem") MultipartFile deslocamentoViagem,
+			@RequestPart("despesaviagem") MultipartFile despesaViagem,
+			@RequestParam("usuarioviagem") Long usuarioViagem) throws IOException {
+		DiariaDTO diaria = new DiariaDTO();
+		LocalDate dataNova = LocalDate.parse(dataViagem);
+		diaria.setId(id);
+		diaria.setData(dataNova);
 		diaria.setCidade(cidadeViagem);
 		diaria.setValorDiaria(Double.parseDouble(valorDiariaViagem.substring(3, 5)));
 		diaria.setValorGasto(valorGastoViagem);

@@ -33,18 +33,6 @@ public class DiariaService {
 		return new DiariaDTO(diaria.get());
 	}
 	
-	/*public Page<DiariaDTO> findDespesaById(Long id, String dataMinima, String dataMaxima, Pageable pageable) {
-		LocalDate minDate = LocalDate.parse(dataMinima);
-		LocalDate maxDate = LocalDate.parse(dataMaxima);
-		
-		Page<Diaria> diaria = diariaRepository.findDespesaById(id, minDate, maxDate, pageable);
-		if (diaria.isEmpty()) {
-			return null;
-		}
-		Page<DiariaDTO> dto = diaria.map(x -> new DiariaDTO(x)); 
-		return dto;
-	}*/
-	
 	public List<DiariaDTO> findDespesaById(Long id, String dataMinima, String dataMaxima) {
 		LocalDate minDate = LocalDate.parse(dataMinima);
 		LocalDate maxDate = LocalDate.parse(dataMaxima);
@@ -60,10 +48,11 @@ public class DiariaService {
 	
 	public DiariaDTO cadastrarDiaria(DiariaDTO diaria) {
 		Diaria novaDiaria = new Diaria(diaria);
-		novaDiaria = diariaRepository.save(novaDiaria);
+		novaDiaria = diariaRepository.saveAndFlush(novaDiaria);
 		return new DiariaDTO(novaDiaria);
 	}
 	
+		
 	public Page<DiariaDTO> diariaPorUsuario(Long id, String dataMinima, String dataMaxima, Pageable pageable) {
 		LocalDate minDate = LocalDate.parse(dataMinima).plusDays(1);
 		LocalDate maxDate = LocalDate.parse(dataMaxima).plusDays(1);

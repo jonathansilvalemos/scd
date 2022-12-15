@@ -20,7 +20,7 @@ function UsuarioListar() {
     document.title = newPageTitle;
 
     const { cod, mat, tip } = useParams();
-   
+
     const [page, setPage] = useState<UsuarioPage>({
         content: [],
         last: true,
@@ -45,12 +45,13 @@ function UsuarioListar() {
                 alert('Erro ao carregar Usuários' + err);
             });
     }, [pageNumber])
-    
-    const excluirUsuario = async (id: number) => { 
+
+    const excluirUsuario = async (id: number) => {
+
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
             method: 'DELETE',
-            url: `/usuario/${id}`            
+            url: `/usuario/${id}`
         }
 
         await axios(config).then(response => {
@@ -68,6 +69,7 @@ function UsuarioListar() {
     const handlePageChange = (newPageNumber: number) => {
         setPageNumber(newPageNumber);
     }
+
     return (
         <>
             <Header />
@@ -75,7 +77,6 @@ function UsuarioListar() {
             <main>
                 <section id="diarias">
                     <div className="scd-container">
-
                         <div className="scd-card">
                             <h2 className="scd-diarias-titulo">Editar Usuários</h2>
                             <Pagination page={page} onChange={handlePageChange} />
@@ -102,14 +103,13 @@ function UsuarioListar() {
                                                 </td>
                                                 <td>
                                                     <div className="scd-red-btn-container">
-                                                        <a href={"/usuario/excluir/" + `${cod}/${mat}/${tip}/${u.codigo}`} onClick={() =>  {
-                                                            if(confirm(`Deseja excluir o usuário ${u.nome}?`)){
-                                                                excluirUsuario(u.codigo);        
+                                                        <a href={"/usuario/excluir/" + `${cod}/${mat}/${tip}/${u.codigo}`} onClick={() => {
+                                                            if (confirm(`Deseja excluir o usuário ${u.nome}?`)) {
+                                                                excluirUsuario(u.codigo);
                                                             }
-                                                            } }><ExcluirBotao /></a>
+                                                        }}><ExcluirBotao /></a>
                                                     </div>
                                                 </td>
-
                                             </tr>
                                         )
                                         )}
@@ -123,5 +123,4 @@ function UsuarioListar() {
         </>
     );
 }
-
 export default UsuarioListar;

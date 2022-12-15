@@ -12,8 +12,6 @@ import { Escala, EscalaPage } from "../../types/escala";
 import PaginationEscala from "../../components/PaginationEscala";
 import isEmpty from "../../utils/isEmpety";
 
-
-
 registerLocale('pt-br', ptBR);
 
 type Props = {
@@ -30,14 +28,9 @@ function EscalaListar() {
     document.title = newPageTitle;
 
     const data = new Date();
-    const { cod, mat, tip } = useParams();
-    const [imagem, setImagem] = useState<Blob>()
-    const [arquivo, setArquivo] = useState<any>();
-    const [dataEscala, setDataEscala] = useState(data);
-    const mostrarEscala = (dado: Blob) => {
-        setImagem(dado);
-    }
 
+    const { cod, mat, tip } = useParams();
+    const [dataEscala, setDataEscala] = useState(data);
     const [page, setPage] = useState<EscalaPage>({
         content: [],
         last: true,
@@ -52,55 +45,60 @@ function EscalaListar() {
 
     const [pageNumber, setPageNumber] = useState(0);
 
-
     useEffect(() => {
+
         async function listarEscalas() {
+
             const config: AxiosRequestConfig = {
                 baseURL: BASE_URL,
                 method: 'GET',
                 url: `/escala/?size=5&page=${pageNumber}&sort=data`
             }
+
             await axios(config).then(response => {
                 const data = response.data as EscalaPage;
-                setPage(data);   
-                console.log("Dados: " + response);             
+                setPage(data);
+                console.log("Dados: " + response);
             }).catch((err) => {
                 alert('Erro ao carregar Usuários' + err);
             });
         }
+
         listarEscalas();
 
     }, [pageNumber])
 
-    useEffect(()=>{
+    useEffect(() => {
+
         async function listarEscalasPorData() {
-            const dataViagem = dataEscala.toISOString().slice(0,10);
+
+            const dataViagem = dataEscala.toISOString().slice(0, 10);
 
             const config: AxiosRequestConfig = {
                 baseURL: BASE_URL,
                 method: 'GET',
-                url: `/escala/dia?data=${dataViagem}&size=5&page=${pageNumber}&sort=data`
+                url: `/escala/dia?data=${dataViagem}&size=5&page=${pageNumber}`
             }
-            
+
             await axios(config).then(response => {
-                if (isEmpty(response.data)){
+                if (isEmpty(response.data)) {
                     alert('Nenhuma escala cadastrada para o dia');
                 }
                 const data = response.data as EscalaPage;
-                setPage(data);                
+                setPage(data);
             }).catch((err) => {
                 alert('Erro ao carregar Usuários' + err);
             });
         }
+
         listarEscalasPorData();
 
-    },[dataEscala, pageNumber])
-    
+    }, [dataEscala, pageNumber])
+
     const handlePageChange = (newPageNumber: number) => {
         setPageNumber(newPageNumber);
     }
 
-    
     return (
         <>
             <Header />
@@ -108,7 +106,6 @@ function EscalaListar() {
             <main>
                 <section id="diarias">
                     <div className="scd-container">
-
                         <div className="scd-card">
                             <h2 className="scd-diarias-titulo">Listar Escalas</h2>
                             <PaginationEscala page={page} onChange={handlePageChange} />
@@ -122,7 +119,6 @@ function EscalaListar() {
                                         className="scd-form-control"
                                         dateFormat="dd/MM/yyyy"
                                     />
-
                                 </div>
                                 <table className="scd-diarias-table">
                                     <thead>
@@ -134,41 +130,31 @@ function EscalaListar() {
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         {page.content.map(u =>
-
                                         (
-
-                                            <tr key={u.id} onLoad={() => setImagem(u.escala)}>
-
+                                            <tr key={u.id}>
                                                 <td>{u.id}</td>
                                                 <td>{new Date(u.data).toLocaleDateString('pt-br')}</td>
-
                                                 <td>
-
                                                     <Link to={`/escala/listar/mostrar/${cod}/${mat}/${tip}/${u.id}`}>
                                                         <button className="btn-primary p-1">
                                                             abrir escala
                                                         </button>
-
                                                     </Link>
                                                 </td>
                                                 <td>
-                                                    
                                                     <div className="scd-red-btn-container">
-                                                        <a href={"/escala/excluir/" + `${cod}/${mat}/${tip}/${u.id}`} 
-                                                        onClick={() =>  {
-                                                            if(tip === 'admin'){
-                                                                alert('Excluído com sucesso');        
-                                                            } else {
-                                                                alert('Você não tem permissão para excluir!');
-                                                                window.location.href = `/escala/listar/${cod}/${mat}/${tip}`;
-                                                            }
-                                                            } }><ExcluirBotao /></a>
+                                                        <a href={"/escala/excluir/" + `${cod}/${mat}/${tip}/${u.id}`}
+                                                            onClick={() => {
+                                                                if (tip === 'admin') {
+                                                                    alert('Excluído com sucesso');
+                                                                } else {
+                                                                    alert('Você não tem permissão para excluir!');
+                                                                    window.location.href = `/escala/listar/${cod}/${mat}/${tip}`;
+                                                                }
+                                                            }}><ExcluirBotao /></a>
                                                     </div>
-                                                    
                                                 </td>
-
                                             </tr>
                                         )
                                         )}
@@ -182,5 +168,4 @@ function EscalaListar() {
         </>
     );
 }
-
 export default EscalaListar;

@@ -11,8 +11,6 @@ import { DiariaPage } from "../../types/diaria";
 import axios from "axios";
 import PaginationDiaria from "../../components/PaginationDiaria";
 
-
-
 registerLocale('pt-br', ptBR);
 
 function Diaria() {
@@ -22,7 +20,6 @@ function Diaria() {
 
     const min = new Date(new Date().setDate(new Date().getDate() - 30));
     const max = new Date();
-
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
 
@@ -123,7 +120,6 @@ function Diaria() {
                                             )
                                         })
                                         }
-
                                     </tbody>
                                 </table>
                             </div>

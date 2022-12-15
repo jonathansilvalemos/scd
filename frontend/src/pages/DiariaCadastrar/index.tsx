@@ -10,8 +10,6 @@ import isEmpty from "../../utils/isEmpety";
 import { BASE_URL } from "../../utils/requests";
 import { Cidade } from "../../types/cidade";
 
-
-
 registerLocale('pt-br', ptBR);
 
 function DiariaCadastrar() {
@@ -47,23 +45,18 @@ function DiariaCadastrar() {
         }).catch((err) => {
             console.log("Erro: " + err);
         });
-
-
     }, [])
-
 
     const handleChangeDeslocamento = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileList = e.target.files;
         if (!fileList) return;
         setDeslocamento(fileList[0]);
-
     };
 
     const handleChangeDespesa = (e: React.ChangeEvent<HTMLInputElement>) => {
         const fileList = e.target.files;
         if (!fileList) return;
         setDespesa(fileList[0]);
-
     };
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -76,7 +69,7 @@ function DiariaCadastrar() {
         const portariaViagem = (event.target as any).portaria.value;
         const status = (event.target as any).status.value;
         const usuario = cod;
-        
+
         if (deslocamento && despesa && texto && usuario) {
             formData.append('dataviagem', dataEscalada);
             formData.append('cidadeviagem', texto);
@@ -88,24 +81,15 @@ function DiariaCadastrar() {
             formData.append('despesaviagem', despesa, despesa.name);
             formData.append('usuarioviagem', usuario);
         }
-        console.log("Cidade: " + texto);
-        console.log("Diaria: " + valorDiaria);
-        console.log("Valor Gasto: " + valorGastoDiaria);
-        console.log("Portaria: " + portariaViagem);
-        console.log("Status: " + status);
-        console.log("Deslocamento: " + deslocamento);
-        console.log("Despesa: " + despesa);
-        console.log("Código usuário: " + cod);
-              
+      
         await axios.post(`${BASE_URL}/diaria`, formData)
             .then(response => {
-               console.log(response.data);
+                console.log(response.data);
                 if (isEmpty(response.data)) {
                     alert("Diária já cadastrada!");
                 } else {
                     alert("Diária cadastrada com sucesso!");
                 }
-
             }).catch((err) => {
                 console.log("Erro: " + err);
             });
@@ -131,13 +115,10 @@ function DiariaCadastrar() {
                                         dateFormat="dd/MM/yyyy"
                                     />
                                 </div>
-
                                 <div className="form-group">
-
                                     <div className="scd-container-select">
                                         <label htmlFor="sel1" > Cidade:</label >
                                         <div className="scd-form-container-cadastro-select">
-
                                             <select className="scd-form-control-select" id='sel1' name="cidadeSelect" onChange={v => setValor(Number.parseInt(v.target.value))}>
                                                 {cidade.map((x) => {
 
@@ -151,16 +132,12 @@ function DiariaCadastrar() {
                                         </div>
                                         <label className="mt-3 " htmlFor="valor" >Valor:</label>
                                         <div className="scd-container-valores">
-
                                             <div className="scd-form-container-cadastro-select">
                                                 <input className="scd-form-control-valor-select" name="valorDiaria" type="text" value={`${valor.toLocaleString('pt-br', formato)}`} disabled />
                                             </div>
-
                                         </div>
                                     </div>
-
                                     <div className="scd-container-valores">
-
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Valor Gasto:</label>
                                             <input className="scd-form-control" name="valorGasto" type="text" placeholder="Despesa do dia R$" />

@@ -3,7 +3,7 @@ package com.jonathanlemos.scd.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,7 +41,7 @@ public class Diaria implements Serializable{
 	private byte[] compDesloca;
 	
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@OneToOne(cascade = CascadeType.MERGE, orphanRemoval = false)
+	@OneToOne
 	private Usuario usuario;
 	
 	public Diaria() {
@@ -61,6 +61,7 @@ public class Diaria implements Serializable{
 		usuario = new Usuario(diaria.getUsuario());
 	}
 	
+		
 	public Long getId() {
 		return id;
 	}

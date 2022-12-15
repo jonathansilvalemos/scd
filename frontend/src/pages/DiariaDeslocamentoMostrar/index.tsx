@@ -12,7 +12,7 @@ function DiariaDeslocamentoMostrar() {
 
     const { id } = useParams();
     const [imagem, setImagem] = useState<File>();
-    
+
     useEffect(() => {
         async function listarEscalas() {
             const config: AxiosRequestConfig = {
@@ -22,18 +22,14 @@ function DiariaDeslocamentoMostrar() {
             }
             await axios(config).then(response => {
                 const data = response.data;
-                setImagem(data.compDesloca);                
+                setImagem(data.compDesloca);
             }).catch((err) => {
                 alert('Erro ao carregar Usuários' + err);
             });
         }
         listarEscalas();
-
     }, [])
 
-
-
-    
     return (
         <>
             <Header />
@@ -41,11 +37,8 @@ function DiariaDeslocamentoMostrar() {
             <main>
                 <section id="diarias">
                     <div className="scd-container-despesa">
-
                         <h2 className="scd-diarias-titulo mb-2">Comprovante de Deslocamento</h2>
-                        <img src={`data:image/jpg;base64,${imagem}`} alt="Despesa" className="embed-img"/>
-                      
-                        
+                        <img src={`data:image/jpg;base64,${imagem}`} alt="Despesa" className="embed-img" />
                     </div>
                 </section>
             </main>

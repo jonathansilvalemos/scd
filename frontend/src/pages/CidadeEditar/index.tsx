@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import Header from '../../components/Header';
 import { Cidade } from 'types/cidade';
@@ -14,8 +14,7 @@ function CidadeEditar() {
 
     const { cod, mat, tip, id } = useParams();
     const [cidade, setCidade] = useState<Cidade>();
-    console.log(cod, mat, id);
-
+    
     useEffect(() => {
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,

@@ -1,7 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
-import { useEffect, useState } from "react";
 import Header from '../../components/Header';
-import { Cidade } from 'types/cidade';
 import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../../utils/requests';
 import isEmpty from '../../utils/isEmpety';
@@ -11,8 +8,6 @@ function CidadeCadastrar() {
 
     let newPageTitle = 'SCD - Cadastro de Cidade';
     document.title = newPageTitle;
-
-    const [cidade, setCidade] = useState<Cidade>()
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -40,7 +35,7 @@ function CidadeCadastrar() {
             console.log("Erro: " + err);
         });
     }
-    const { cod, mat } = useParams();
+    
     return (
         <div>
             <Header />

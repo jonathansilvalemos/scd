@@ -27,7 +27,6 @@ function CidadeListar() {
                     setCidade(response.data.content);
                 }
             })
-
             .catch((err) => {
                 alert('Erro ao carregar Cidades' + err);
             });
@@ -40,10 +39,8 @@ function CidadeListar() {
             <main>
                 <section id="diarias">
                     <div className="scd-container">
-
                         <div className="scd-card">
                             <h2 className="scd-diarias-titulo">Editar Cidades</h2>
-
                             <div>
                                 <table className="scd-diarias-table">
                                     <thead>

@@ -25,7 +25,7 @@ function Despesas() {
     let descontoTransporte: number;
     let saldoDiaria: number;
 
-    const { cod } = useParams();
+    const { cod, mat, tip } = useParams();
     const min = new Date(new Date().setDate(new Date().getDate() - 30));
     const max = new Date();
 
@@ -41,7 +41,15 @@ function Despesas() {
     const [transporteDesconto, setTransporteDesconto] = useState(0);
     const [dados, setDados] = useState<Diaria[]>([]);
 
-    async function recebeDados() {
+    useEffect(() => {
+        totalDiaria = 0;
+        valorRecebido = 0;
+        valorReceber = 0;
+        valorGastoDiaria = 0;
+        saldoDiaria = 0;
+        descontoAlimentacao = 0;
+        descontoTransporte = 0;
+
         const dataMinima = minDate.toISOString().slice(0, 10);
         const dataMaxima = maxDate.toISOString().slice(0, 10);
 
@@ -52,15 +60,14 @@ function Despesas() {
         }
 
         axios(config).then(response => {
+
             console.log(response.data);
             const data = response.data as Diaria[];
             setDados(data);
-               
-                dados.forEach(u => {
+
+            dados.forEach(u => {
                 totalDiaria = u.valorDiaria + totalDiaria;
-                console.log("Valor diaria dento: " + u.valorDiaria);
-                console.log("Valor gasto dentro: " + u.valorGasto);
-           
+
                 if (u.status == 1) {
                     valorRecebido = valorRecebido + u.valorDiaria;
                 } else {
@@ -71,6 +78,7 @@ function Despesas() {
                 descontoAlimentacao = descontoAlimentacao + (totalDiaria * 0.01);
                 descontoTransporte = descontoTransporte + (totalDiaria * 0.005);
             });
+
             setDiariaTotal(totalDiaria);
             setGastoValor(valorGastoDiaria);
             setDiariaSaldo(saldoDiaria);
@@ -81,22 +89,7 @@ function Despesas() {
         }).catch((err) => {
             alert('Erro ao carregar Usuários' + err);
         });
-     
-    }
-
-    useEffect(() => {
-        totalDiaria = 0;
-        valorRecebido = 0;
-        valorReceber = 0;
-        valorGastoDiaria = 0;
-        saldoDiaria = 0;
-        descontoAlimentacao = 0;
-        descontoTransporte = 0;
-
-        recebeDados();
-
     }, [minDate, maxDate]);
-
 
     return (
         <div>
@@ -167,7 +160,7 @@ function Despesas() {
                                 </div>
 
                                 <div className="scd-btn-login mt-5">
-                                    <Link to='/diaria'>
+                                    <Link to={`/diaria/${cod}/${mat}/${tip}`}>
                                         <input type='submit' className='btn-login-form' value="Retornar" />
                                     </Link>
                                 </div>
