@@ -32,7 +32,5 @@ public class Cidade {
 	}
 	public void setValor(Double valor) {
 		this.valor = valor;
-	}
-	
-	
+	}	
 }

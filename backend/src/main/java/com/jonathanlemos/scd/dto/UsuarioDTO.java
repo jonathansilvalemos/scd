@@ -9,8 +9,7 @@ public class UsuarioDTO {
 	private String nome;
 	private String senha;
 	private String tipo;
-	
-	
+		
 	public UsuarioDTO() {
 		
 	}
@@ -63,7 +62,5 @@ public class UsuarioDTO {
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-	
-	
+	}	
 }

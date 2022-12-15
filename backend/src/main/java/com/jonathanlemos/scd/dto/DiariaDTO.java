@@ -130,9 +130,5 @@ public class DiariaDTO implements Serializable{
 
 	public void setCompDesloca(byte[] compDesloca) {
 		this.compDesloca = compDesloca;
-	}
-	
-	
-	
-	
+	}	
 }

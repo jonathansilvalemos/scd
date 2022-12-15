@@ -41,17 +41,14 @@ public class DiariaController {
 	@GetMapping(value = "/{id}")
 	public DiariaDTO findById(@PathVariable Long id) {
 		return diariaService.findById(id);
-	}
-	
+	}	
 	
 	@GetMapping(value = "/despesa")
 	public List<DiariaDTO> findDespesaById(@RequestParam("user") Long id,
 			@RequestParam("mindate") String dataMinima,
 			@RequestParam("maxdate") String dataMaxima) {
 		return diariaService.findDespesaById(id, dataMinima, dataMaxima);
-	}
-	
-	
+	}	
 
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<DiariaDTO> cadastrarDiaria(
@@ -122,8 +119,6 @@ public class DiariaController {
 			@RequestParam("mindate") String dataMinima,
 			@RequestParam("maxdate") String dataMaxima,
 			Pageable pageable){
-		return diariaService.diariaPorUsuario(id, dataMinima, dataMaxima, pageable);
-		
-	}
-	
+		return diariaService.diariaPorUsuario(id, dataMinima, dataMaxima, pageable);		
+	}	
 }

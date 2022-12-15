@@ -20,7 +20,6 @@ public class CidadeService {
 		Page<CidadeDTO> page = cidade.map(x -> new CidadeDTO(x));
 		return page;
 	}
-
 	
 	@Transactional(readOnly = true)
 	public CidadeDTO findById(Long id) {

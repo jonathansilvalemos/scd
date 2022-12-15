@@ -49,7 +49,4 @@ public class Escala implements Serializable{
 	public void setEscala(byte[] escala) {
 		this.escala = escala;
 	}
-	
-	
-
 }

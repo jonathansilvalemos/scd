@@ -50,9 +50,5 @@ public class EscalaDTO implements Serializable{
 
 	public void setEscala(byte[] escala) {
 		this.escala = escala;
-	}
-	
-	
-
-	
+	}	
 }

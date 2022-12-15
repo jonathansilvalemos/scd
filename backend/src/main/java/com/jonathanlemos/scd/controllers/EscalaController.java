@@ -54,7 +54,4 @@ public class EscalaController{
 	public Page<EscalaDTO> buscarData(@RequestParam("data") String data, Pageable pageable) {
 		return escalaService.findByData(data, pageable);
 	}
-	
-	
-
 }

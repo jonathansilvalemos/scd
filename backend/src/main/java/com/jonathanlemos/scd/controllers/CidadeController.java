@@ -25,8 +25,7 @@ public class CidadeController {
 	@GetMapping
 	public Page<CidadeDTO> findAll(Pageable pageable) {
 		return cidadeService.buscarTodos(pageable);
-	}
-	
+	}	
 		
 	@GetMapping(value = "/{id}")
 	public CidadeDTO findById(@PathVariable Long id) {
@@ -48,6 +47,5 @@ public class CidadeController {
 			return true;
 		}
 		return false;
-	}
-	
+	}	
 }
