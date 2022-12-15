@@ -6,6 +6,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../../utils/requests';
 import isEmpty from '../../utils/isEmpety';
 import NavBarAdmin from '../../components/NavBarAdmin';
+import CurrencyInput from 'react-currency-input-field';
 
 function CidadeEditar() {
 
@@ -14,7 +15,7 @@ function CidadeEditar() {
 
     const { cod, mat, tip, id } = useParams();
     const [cidade, setCidade] = useState<Cidade>();
-    
+
     useEffect(() => {
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
@@ -38,6 +39,8 @@ function CidadeEditar() {
         event.preventDefault();
         const nome = (event.target as any).nome.value;
         const valor = (event.target as any).valor.value;
+        const valor2: string = valor.toString().replace(',','.').substring(4, 9);
+        const valor3 = parseFloat(valor2);
 
         const config: AxiosRequestConfig = {
             baseURL: BASE_URL,
@@ -46,13 +49,13 @@ function CidadeEditar() {
             data: {
                 id: id,
                 nome: nome,
-                valor: valor
+                valor: valor3
             }
         }
 
         axios(config).then(response => {
             alert("Cidade atualizada com sucesso!");
-            window.location.href=`/cidade/editarcidade/${cod}/${mat}/${tip}`;
+            window.location.href = `/cidade/editarcidade/${cod}/${mat}/${tip}`;
 
         }).catch((err) => {
             console.log("Erro: " + err);
@@ -83,13 +86,22 @@ function CidadeEditar() {
                                         </div>
                                         <div>
                                             <label htmlFor="valor">Valor:</label>
-                                            R$ <input
-                                                type='number'
+                                            <CurrencyInput
                                                 className='scd-form-control-login mb-2'
-                                                name='valor'
+                                                intlConfig={{ locale: 'pt-BR', currency: 'BRA' }}
+                                                id="valor"
+                                                name="valor"
+                                                placeholder="Digite o valor da diária"
+                                                prefix='R$ '
+                                                fixedDecimalLength={2}
                                                 defaultValue={cidade?.valor}
-                                                step="0.01" min="44.00" required />
+                                                decimalsLimit={2}
+                                                disableGroupSeparators={false}
+                                                disableAbbreviations={true}
+                                                autoFocus
+                                                required
 
+                                            />
                                         </div>
 
                                     </div>

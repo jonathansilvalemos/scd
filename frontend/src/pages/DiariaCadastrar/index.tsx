@@ -9,6 +9,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import isEmpty from "../../utils/isEmpety";
 import { BASE_URL } from "../../utils/requests";
 import { Cidade } from "../../types/cidade";
+import CurrencyInput from 'react-currency-input-field';
 
 registerLocale('pt-br', ptBR);
 
@@ -68,13 +69,14 @@ function DiariaCadastrar() {
         const valorGastoDiaria = (event.target as any).valorGasto.value == '' ? 0 : (event.target as any).valorGasto.value;
         const portariaViagem = (event.target as any).portaria.value;
         const status = (event.target as any).status.value;
+        const valor2: string = valorGastoDiaria.toString().replace(',','.').substring(4, 9);
         const usuario = cod;
 
         if (deslocamento && despesa && texto && usuario) {
             formData.append('dataviagem', dataEscalada);
             formData.append('cidadeviagem', texto);
             formData.append('valordiariaviagem', valorDiaria);
-            formData.append('valorgastoviagem', valorGastoDiaria);
+            formData.append('valorgastoviagem', valor2);
             formData.append('portariaviagem', portariaViagem);
             formData.append('statusviagem', status);
             formData.append('deslocamentoviagem', deslocamento, deslocamento.name);
@@ -138,9 +140,21 @@ function DiariaCadastrar() {
                                         </div>
                                     </div>
                                     <div className="scd-container-valores">
-                                        <div className="scd-form-container-cadastro">
+                                        <div className="scd-form-container-cadastro">                                            
                                             <label className="mt-3" htmlFor="valor">Valor Gasto:</label>
-                                            <input className="scd-form-control" name="valorGasto" type="text" placeholder="Despesa do dia R$" />
+                                            <CurrencyInput
+                                                className='scd-form-control'
+                                                intlConfig={{ locale: 'pt-BR', currency: 'BRA' }}
+                                                id="valorGasto"
+                                                name="valorGasto"
+                                                placeholder="Despesa do dia R$"
+                                                prefix='R$ '
+                                                fixedDecimalLength={2}
+                                                decimalsLimit={2}
+                                                disableGroupSeparators={false}
+                                                disableAbbreviations={true}
+                                                required                                                
+                                            />    
                                         </div>
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Portaria:</label><br />

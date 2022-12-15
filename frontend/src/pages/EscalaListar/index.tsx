@@ -144,15 +144,7 @@ function EscalaListar() {
                                                 </td>
                                                 <td>
                                                     <div className="scd-red-btn-container">
-                                                        <a href={"/escala/excluir/" + `${cod}/${mat}/${tip}/${u.id}`}
-                                                            onClick={() => {
-                                                                if (tip === 'admin') {
-                                                                    alert('Excluído com sucesso');
-                                                                } else {
-                                                                    alert('Você não tem permissão para excluir!');
-                                                                    window.location.href = `/escala/listar/${cod}/${mat}/${tip}`;
-                                                                }
-                                                            }}><ExcluirBotao /></a>
+                                                        <a href="#"><ExcluirBotao /></a>
                                                     </div>
                                                 </td>
                                             </tr>

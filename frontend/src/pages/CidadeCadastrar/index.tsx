@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { BASE_URL } from '../../utils/requests';
 import isEmpty from '../../utils/isEmpety';
 import NavBarAdmin from '../../components/NavBarAdmin';
+import CurrencyInput from 'react-currency-input-field';
 
 function CidadeCadastrar() {
 
@@ -13,14 +14,17 @@ function CidadeCadastrar() {
         event.preventDefault();
         const nome = (event.target as any).nome.value;
         const valor = (event.target as any).valor.value;
+        const valor2: string = valor.toString().replace(',','.').substring(4, 9);
+        const valor3 = parseFloat(valor2);
 
         const config: AxiosRequestConfig = {
+            
             baseURL: BASE_URL,
             method: 'POST',
             url: '/cidade',
             data: {
                 nome: nome,
-                valor: valor
+                valor: valor3
             }
         }
 
@@ -30,11 +34,11 @@ function CidadeCadastrar() {
             } else {
                 alert("Cidade cadastrada com sucesso!");
             }
-
         }).catch((err) => {
             console.log("Erro: " + err);
         });
     }
+
     
     return (
         <div>
@@ -55,9 +59,22 @@ function CidadeCadastrar() {
                                         </div>
                                         <div>
                                             <label htmlFor="valor">Valor:</label>
-                                            R$ <input type="number" className='scd-form-control-login mb-2' name="valor"
-                                                step="0.01" min="44.00" required />
-
+                                            <CurrencyInput
+                                                className='scd-form-control-login mb-2'
+                                                intlConfig={{ locale: 'pt-BR', currency: 'BRA' }}
+                                                id="valor"
+                                                name="valor"
+                                                placeholder="Digite o valor da diária"
+                                                prefix='R$ '
+                                                fixedDecimalLength={2}
+                                                defaultValue={44}
+                                                decimalsLimit={2}
+                                                disableGroupSeparators={false}
+                                                disableAbbreviations={true}
+                                                required
+                                                
+                                            />
+                                            
                                         </div>
 
                                     </div>

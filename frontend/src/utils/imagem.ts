@@ -9,7 +9,6 @@ export function blobToFile(imagem:Blob) {
             download: 'escala',
         });
         window.open(href);
-        //a.click();
         URL.revokeObjectURL(href);
         a.remove();
     }

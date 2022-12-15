@@ -71,9 +71,9 @@ function NavBarAdmin() {
               </NavDropdown>
 
               <NavDropdown title="Diária" id="collasible-nav-dropdown">
-                <NavDropdown.Item href={"/usuario/cadastrardiaria/" + `${cod}/${mat}/${tip}`}>Cadastrar</NavDropdown.Item>
+                <NavDropdown.Item href={"/diaria/cadastrar/" + `${cod}/${mat}/${tip}`}>Cadastrar</NavDropdown.Item>                
                 <NavDropdown.Divider />
-                <NavDropdown.Item href={"/usuario/diaria/" + `${cod}/${mat}/${tip}`}>Pesquisar</NavDropdown.Item>
+                <NavDropdown.Item href={"/diaria/" + `${cod}/${mat}/${tip}`}>Pesquisar</NavDropdown.Item>
                 
               </NavDropdown>
 

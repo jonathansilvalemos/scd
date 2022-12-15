@@ -157,6 +157,7 @@ function DiariaEditar() {
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Valor Gasto:</label>
                                             <input className="scd-form-control" name="valorGasto" type="text" defaultValue={diaria?.valorGasto} placeholder="Despesa do dia R$" />
+                                      
                                         </div>
                                         <div className="scd-form-container-cadastro">
                                             <label className="mt-3" htmlFor="valor">Portaria:</label><br />

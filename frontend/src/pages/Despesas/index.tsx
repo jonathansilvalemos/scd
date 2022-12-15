@@ -75,8 +75,8 @@ function Despesas() {
                 }
                 valorGastoDiaria = valorGastoDiaria + u.valorGasto;
                 saldoDiaria = valorRecebido - valorGastoDiaria;
-                descontoAlimentacao = descontoAlimentacao + (totalDiaria * 0.01);
-                descontoTransporte = descontoTransporte + (totalDiaria * 0.005);
+                descontoAlimentacao = (totalDiaria * 0.04);
+                descontoTransporte = (totalDiaria * 0.009);
             });
 
             setDiariaTotal(totalDiaria);
