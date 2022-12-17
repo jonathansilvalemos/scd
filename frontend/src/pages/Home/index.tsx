@@ -15,10 +15,10 @@ function Home() {
                     <div className="scd-container">
                         <div className='container py-5'>
                             <div className="jumbotron jumbotron-fluid">
-                                <h1 className="display-4">Sistema de Controle de Diárias</h1>
-                                <p className="lead">Sistema para analisar os controles de diárias de viagens</p>
+                                <h1 className="display-4">Sistema de Monitoramento de Diárias</h1>
+                                <p className="lead">Sistema para analisar e monitorar diárias de viagens</p>
                                 <hr />
-                                <p>Esta aplicação consiste em exibir um controle de diárias dos motoristas da SMS de São José do Norte.</p>
+                                <p>Esta aplicação consiste em exibir um monitoramento de diárias de motoristas.</p>
                                 <Link to='/usuario/login'>
                                     <div className='btn btn-primary'>Acessar</div>
                                 </Link>
