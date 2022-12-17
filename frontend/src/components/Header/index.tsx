@@ -1,4 +1,4 @@
-import logo from '../../assets/img/logoNorte.png';
+import logo from '../../assets/img/logo.svg';
 import './styles.css';
 
 

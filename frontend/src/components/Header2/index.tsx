@@ -1,4 +1,4 @@
-import logo from '../../assets/img/logoNorte.png';
+import logo from '../../assets/img/logo.svg';
 import './styles.css';
 
 function Header2() {
@@ -6,6 +6,7 @@ function Header2() {
         <header>
             <div className="scd-logo-container">
                 <a href="/"> <img src={logo} alt="logo" /></a>
+                <h1>Sistema de Monitoramento de Diárias</h1>
             </div>
         </header>
     );
